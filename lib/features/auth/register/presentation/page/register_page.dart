@@ -1,13 +1,15 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/textfield/textfield_widget.dart';
 import 'package:fitness_tracker_app/features/auth/login/presentation/widgets/background_login.dart';
+import 'package:fitness_tracker_app/features/auth/register/presentation/controller/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends GetView<RegisterController> {
   const RegisterPage({super.key});
 
   @override
@@ -45,8 +47,26 @@ class RegisterPage extends StatelessWidget {
                   color: AppColors.primary,
                 ),
                 const SizedBox(height: 16.0),
-                const TextFieldWidget(
+                TextFieldWidget(
                   hintText: "Email",
+                  controller: controller.emailController,
+                  onChanged: (value) {
+                    controller.validateEmail();
+                  },
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.msgEmailError.value.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextWidget(
+                        text: controller.msgEmailError.value.tr,
+                        color: AppColors.error,
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 const TextWidget(
@@ -57,6 +77,24 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 16.0),
                 TextFieldWidget(
                   hintText: "password".tr,
+                  controller: controller.passwordController,
+                  onChanged: (value) {
+                    controller.validatePassword();
+                  },
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.msgPasswordError.value.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextWidget(
+                        text: controller.msgPasswordError.value.tr,
+                        color: AppColors.error,
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 const TextWidget(
@@ -67,12 +105,33 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 16.0),
                 TextFieldWidget(
                   hintText: "confirm_password".tr,
+                  controller: controller.confirmPasswordController,
+                  onChanged: (value) {
+                    controller.validatePassword();
+                  },
+                ),
+                Obx(
+                  () => Visibility(
+                    visible:
+                        controller.msgConfirmPasswordError.value.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextWidget(
+                        text: controller.msgConfirmPasswordError.value.tr,
+                        color: AppColors.error,
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 34.0),
                 Center(
                   child: ButtonWidget(
                     width: 200.0,
-                    ontap: () {},
+                    ontap: () {
+                      controller.register();
+                    },
                     text: "register",
                   ),
                 ),

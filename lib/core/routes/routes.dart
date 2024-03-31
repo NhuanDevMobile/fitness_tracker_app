@@ -4,4 +4,5 @@ abstract class Routes {
   static const main = "/main";
   static const login = "/login";
   static const register = "/register";
+  static const emailVerify = "/emailVerify";
 }

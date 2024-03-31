@@ -1,8 +1,11 @@
+import 'package:fitness_tracker_app/app.dart';
+import 'package:fitness_tracker_app/app_config.dart';
+import 'package:flutter/widgets.dart';
+
 import 'flavors.dart';
 
-import 'main.dart' as runner;
-
 Future<void> main() async {
+  await appConfig();
   F.appFlavor = Flavor.prod;
-  await runner.main();
+  runApp(const App());
 }

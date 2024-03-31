@@ -11,4 +11,16 @@ const Map<String, String> vi = {
   'register': 'Đăng ký',
   'have_an_account': 'Có một tài khoản? ',
   'login_here': 'Đăng nhập tại đây!',
+  'something_went_wrong': 'Đã xảy ra lỗi',
+  'email_cannot_be_empty': 'Email không được để trống!',
+  'email_invalid': 'Email không hợp lệ!',
+  'password_cannot_be_empty': 'Mật khẩu không được để trống!',
+  'password_invalid': 'Mật khẩu không hợp lệ!',
+  'passwords_do_not_match': 'Mật khẩu không trùng khớp!',
+  'email_already_in_use': 'Email đã được sử dụng!',
+  'content_email_verification':
+      'chúng tôi vừa gửi liên kết xác minh email vào email của bạn. Vui lòng kiểm tra thư và nhấp vào liên kết đó để xác minh địa chỉ Email của bạn.',
+  'resend': 'Gửi lại',
+  'resent_email_success': 'Gửi lại email thành công',
+  'login_failed': 'Đăng nhập thất bại!',
 };

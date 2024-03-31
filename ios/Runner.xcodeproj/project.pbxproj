@@ -21,6 +21,7 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9925A2680D5F3CDA23039DA9 /* devProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1FB46B07A91573BC0C59088E /* devProfile.xcconfig */; };
 		9C1278EC162D1BE4D77A7D26 /* prodRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 30FEA91442BDF2A3FE452A46 /* prodRelease.xcconfig */; };
+		B2A1E4E0421C481B3EFA5834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9787DE0B559CC8A699023F1 /* GoogleService-Info.plist */; };
 		C0D6B150AE1A66525AFF762B /* devRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 15585FE509F1BA650CEE63AC /* devRelease.xcconfig */; };
 		CA7D765204EEC2CD9F2CB3FF /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0E4AA1605D9AC7838FCD23 /* Pods_RunnerTests.framework */; };
 		DF5267F7E810498E98904CDB /* prodDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 45F95067A558D5E11BBEDE4E /* prodDebug.xcconfig */; };
@@ -92,6 +93,7 @@
 		E405769C17FCC09E5612C423 /* Pods-RunnerTests.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-prod.xcconfig"; sourceTree = "<group>"; };
 		E8062A980F3F2300BD2F922C /* Pods-Runner.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-dev.xcconfig"; sourceTree = "<group>"; };
 		F416938B72204C371839F2AE /* Pods-RunnerTests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-dev.xcconfig"; sourceTree = "<group>"; };
+		F9787DE0B559CC8A699023F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FCB959DF7BB087219EE5AC4A /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 				41599A1AF5BD0B6229510021 /* devLaunchScreen.storyboard */,
 				386B1F17346488AA5BBFA982 /* Pods */,
 				150F8442B71B8A6404A20C9B /* Frameworks */,
+				F9787DE0B559CC8A699023F1 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,6 +242,7 @@
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				64FB54F8F49C1CD70520C9BA /* [CP] Check Pods Manifest.lock */,
+				BD176C2FD55E15F1F0043947 /* Firebase Setup */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
@@ -319,6 +323,7 @@
 				C0D6B150AE1A66525AFF762B /* devRelease.xcconfig in Resources */,
 				2DE398CDA5B735DCE1172BBA /* prodLaunchScreen.storyboard in Resources */,
 				6ED272ECB9C0D3AADEB1C0AC /* devLaunchScreen.storyboard in Resources */,
+				B2A1E4E0421C481B3EFA5834 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +421,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		BD176C2FD55E15F1F0043947 /* Firebase Setup */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase Setup";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Debug-prod\" ] || [ \"$CONFIGURATION\" == \"Release-prod\" ]; then\n  cp Runner/prod/GoogleService-Info.plist Runner/GoogleService-Info.plist\nelif [ \"$CONFIGURATION\" == \"Debug-dev\" ] || [ \"$CONFIGURATION\" == \"Release-dev\" ]; then\n  cp Runner/dev/GoogleService-Info.plist Runner/GoogleService-Info.plist\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

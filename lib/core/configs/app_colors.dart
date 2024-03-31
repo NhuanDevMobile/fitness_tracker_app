@@ -8,4 +8,5 @@ class AppColors {
   static const black = Color(0xFF020112);
   static const white = Color(0xFFFFFFFF);
   static const transparent = Colors.transparent;
+  static const error = Color(0xFFF83758);
 }

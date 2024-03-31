@@ -3,6 +3,8 @@ import 'package:fitness_tracker_app/features/auth/login/di/login_binding.dart';
 import 'package:fitness_tracker_app/features/auth/login/presentation/page/login_page.dart';
 import 'package:fitness_tracker_app/features/auth/register/di/register_binding.dart';
 import 'package:fitness_tracker_app/features/auth/register/presentation/page/register_page.dart';
+import 'package:fitness_tracker_app/features/auth/verify/di/email_verification_binding.dart';
+import 'package:fitness_tracker_app/features/auth/verify/presentation/page/email_verification_page.dart';
 import 'package:fitness_tracker_app/features/splash/di/splash_binding.dart';
 import 'package:fitness_tracker_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,11 @@ class Pages {
       name: Routes.register,
       page: () => const RegisterPage(),
       binding: RegisterBindding(),
+    ),
+    GetPage(
+      name: Routes.emailVerify,
+      page: () => const EmailVerificationPage(),
+      binding: EmailVerificationBindding(),
     ),
   ];
 }

@@ -3,11 +3,12 @@ import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/textfield/textfield_widget.dart';
+import 'package:fitness_tracker_app/features/auth/login/presentation/controller/login_controller.dart';
 import 'package:fitness_tracker_app/features/auth/login/presentation/widgets/background_login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
 
   @override
@@ -45,8 +46,9 @@ class LoginPage extends StatelessWidget {
                   color: AppColors.primary,
                 ),
                 const SizedBox(height: 16.0),
-                const TextFieldWidget(
+                TextFieldWidget(
                   hintText: "Email",
+                  controller: controller.emailController,
                 ),
                 const SizedBox(height: 20.0),
                 const TextWidget(
@@ -55,14 +57,17 @@ class LoginPage extends StatelessWidget {
                   color: AppColors.primary,
                 ),
                 const SizedBox(height: 16.0),
-                const TextFieldWidget(
+                TextFieldWidget(
                   hintText: "Password",
+                  controller: controller.passwordController,
                 ),
                 const SizedBox(height: 34.0),
                 Center(
                   child: ButtonWidget(
                     width: 200.0,
-                    ontap: () {},
+                    ontap: () {
+                      controller.handleLoginWithEmail();
+                    },
                     text: "login",
                   ),
                 ),
