@@ -1,4 +1,5 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
@@ -50,6 +51,20 @@ class LoginPage extends GetView<LoginController> {
                   hintText: "Email",
                   controller: controller.emailController,
                 ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.emailError.value.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextWidget(
+                        text: controller.emailError.value.tr,
+                        color: AppColors.error,
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20.0),
                 const TextWidget(
                   text: "password",
@@ -57,9 +72,41 @@ class LoginPage extends GetView<LoginController> {
                   color: AppColors.primary,
                 ),
                 const SizedBox(height: 16.0),
-                TextFieldWidget(
-                  hintText: "Password",
-                  controller: controller.passwordController,
+                Obx(
+                  () => TextFieldWidget(
+                    obscureText: controller.isEyePassword.value,
+                    hintText: "Password",
+                    controller: controller.passwordController,
+                    suffixIcon: IconButton(
+                      icon: controller.isEyePassword.value
+                          ? const Icon(
+                              Icons.visibility_off_outlined,
+                              color: AppColors.primary,
+                            )
+                          : const Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: AppColors.primary,
+                            ),
+                      onPressed: () {
+                        controller.isEyePassword.value =
+                            !controller.isEyePassword.value;
+                      },
+                    ),
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.passwordError.value.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextWidget(
+                        text: controller.passwordError.value.tr,
+                        color: AppColors.error,
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 34.0),
                 Center(

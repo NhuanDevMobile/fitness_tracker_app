@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
@@ -13,7 +12,6 @@ class EmailVerificationPage extends GetView<EmailVerificationController> {
 
   @override
   Widget build(BuildContext context) {
-    print(FirebaseAuth.instance.currentUser!.emailVerified);
     return BackgoundRegisterWidget(
         child: Scaffold(
       backgroundColor: AppColors.transparent,

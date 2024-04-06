@@ -28,7 +28,7 @@ class ButtonWidget extends StatelessWidget {
     this.textColor = AppColors.white,
     this.backgroundColor = AppColors.primary,
     this.leadingIcon,
-    this.borderRadius = 10.0,
+    this.borderRadius = 15.0,
   }) : super(key: key);
 
   @override

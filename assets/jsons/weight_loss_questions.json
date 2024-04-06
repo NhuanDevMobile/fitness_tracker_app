@@ -1,0 +1,29 @@
+ [
+      {
+        "id": 1,
+        "question": "Bạn có mục tiêu cụ thể về cân nặng mà bạn muốn đạt được không?",
+        "options": ["Có", "Không"]
+      },
+      {
+        "id": 2,
+        "question": "Bạn muốn giảm bao nhiêu kg trong vòng một tháng?",
+        "options": ["Dưới 2kg", "Từ 2kg đến 5kg", "Trên 5kg", "Không biết"]
+      },
+      {
+        "id": 3,
+        "question": "Bạn có thể dành bao nhiêu thời gian mỗi ngày để tập luyện?",
+        "options": ["Dưới 30 phút", "Từ 30 phút đến 1 giờ", "Trên 1 giờ"]
+      },
+      {
+        "id": 4,
+        "question": "Bạn có thể thực hiện các thay đổi về chế độ ăn uống của mình không?",
+        "options": ["Có", "Không"]
+      },
+      {
+        "id": 5,
+        "question": "Bạn đã từng thực hiện bất kỳ lịch trình giảm cân nào trước đây chưa?",
+        "options": ["Có", "Không"]
+      }
+    ]
+  
+  
