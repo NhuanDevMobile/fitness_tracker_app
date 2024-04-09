@@ -14,7 +14,7 @@ import 'package:fitness_tracker_app/features/splash/presentation/pages/splash_pa
 import 'package:get/get.dart';
 
 class Pages {
-  static const initial = Routes.userInfor;
+  static const initial = Routes.main;
   static const main = Routes.main;
   static final routes = [
     GetPage(

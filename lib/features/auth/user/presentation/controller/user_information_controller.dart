@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
 import 'package:fitness_tracker_app/features/auth/user/model/weight_loss_question_model.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,9 @@ class UserInforController extends GetxController {
 
   void nextPage() {
     if (isStep1Completed() == false) return;
-    if (currentPage.value == 4) return;
+    if (currentPage.value == 4) {
+      Get.offAllNamed(Routes.main);
+    }
     currentPage.value++;
     pageController.nextPage(
         duration: const Duration(milliseconds: 300), curve: Curves.ease);

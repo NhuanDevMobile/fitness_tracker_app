@@ -16,47 +16,35 @@ class UserInforPage extends GetView<UserInforController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildBody(context),
-      appBar: AppBarWidget(
-        title: "basic_information",
-        centerTitle: true,
-        callbackLeading: () {
-          controller.previousPage();
-        },
-      ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
-    );
-  }
-
-  _buildAppBar() {
     return GetBuilder<UserInforController>(
-      id: "fetchUserInformation",
-      builder: (_) => AppBarWidget(
-        title: "basic_information",
-        centerTitle: true,
-        callbackLeading: () {
-          controller.previousPage();
-        },
-      ),
-    );
+        id: "fetchUserInformation",
+        builder: (_) => Scaffold(
+              body: _buildBody(context),
+              appBar: AppBarWidget(
+                title: controller.currentPage.value == 4
+                    ? "build_a_roadmap"
+                    : "basic_information",
+                centerTitle: true,
+                callbackLeading: () {
+                  controller.previousPage();
+                },
+              ),
+              bottomNavigationBar: _buildBottomNavigationBar(),
+            ));
   }
 
   _buildBottomNavigationBar() {
     return Padding(
       padding: const EdgeInsets.only(left: 22.0, right: 22.0, bottom: 60.0),
-      child: GetBuilder<UserInforController>(
-        id: "fetchUserInformation",
-        builder: (_) => ButtonWidget(
-          ontap: () {
-            controller.nextPage();
-          },
-          text: "continue",
-          backgroundColor:
-              controller.currentPage.value == 0 && controller.gender.value == ""
-                  ? AppColors.grey
-                  : AppColors.primary,
-        ),
+      child: ButtonWidget(
+        ontap: () {
+          controller.nextPage();
+        },
+        text: "continue",
+        backgroundColor:
+            controller.currentPage.value == 0 && controller.gender.value == ""
+                ? AppColors.grey
+                : AppColors.primary,
       ),
     );
   }
@@ -64,39 +52,35 @@ class UserInforPage extends GetView<UserInforController> {
   _buildBody(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: GetBuilder<UserInforController>(
-          id: "fetchUserInformation",
-          builder: (_) {
-            return Column(
-              children: [
-                const SizedBox(height: 10.0),
-                LinearPercentIndicator(
-                  width: MediaQuery.of(context).size.width,
-                  lineHeight: 8.0,
-                  percent: controller.percent.value,
-                  padding: EdgeInsets.zero,
-                  backgroundColor: AppColors.grey,
-                  progressColor: AppColors.primary,
-                ),
-                Expanded(
-                  child: PageView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: controller.pageController,
-                    onPageChanged: (value) {
-                      controller.onChangePage(index: value);
-                    },
-                    children: const [
-                      UserInforStep1(),
-                      UserInforStep2(),
-                      UserInforStep3(),
-                      UserInforStep4(),
-                      UserInforStep5(),
-                    ],
-                  ),
-                ),
+      child: Column(
+        children: [
+          const SizedBox(height: 10.0),
+          LinearPercentIndicator(
+            width: MediaQuery.of(context).size.width,
+            lineHeight: 8.0,
+            percent: controller.percent.value,
+            padding: EdgeInsets.zero,
+            backgroundColor: AppColors.grey,
+            progressColor: AppColors.primary,
+          ),
+          Expanded(
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: controller.pageController,
+              onPageChanged: (value) {
+                controller.onChangePage(index: value);
+              },
+              children: const [
+                UserInforStep1(),
+                UserInforStep2(),
+                UserInforStep3(),
+                UserInforStep4(),
+                UserInforStep5(),
               ],
-            );
-          }),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

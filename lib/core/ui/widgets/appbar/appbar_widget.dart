@@ -12,6 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final bool? centerTitle;
   final VoidCallback? callbackLeading;
+  final Color titleColor;
 
   const AppBarWidget(
       {Key? key,
@@ -22,6 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       this.onTapIconAction,
       this.leading,
       this.centerTitle = false,
+      this.titleColor = Colors.black,
       this.callbackLeading})
       : super(key: key);
 
@@ -39,6 +41,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               text: title!,
               fontWeight: FontWeight.w600,
               size: AppDimens.textSize18,
+              color: titleColor,
             )
           : const SizedBox.shrink(),
       titleSpacing: 0.0,

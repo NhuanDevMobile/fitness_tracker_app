@@ -39,4 +39,12 @@ const Map<String, String> vi = {
   'back': 'Trở lại',
   'gender': 'Giới tính',
   'height': 'Chiều cao',
+  'build_a_roadmap': 'Xây dựng lộ trình',
+  'energy_input': 'Năng lượng nạp vào',
+  'remaining': 'Còn lại',
+  'practise': 'Tập luyện',
+  'eaten': 'Ăn vào',
+  'diary': 'Nhật ký',
+  'profile': 'Hồ sơ',
+  'exercise': 'Bài tập',
 };

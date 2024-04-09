@@ -30,16 +30,22 @@ class UserInforStep5 extends GetView<UserInforController> {
                     itemCount:
                         controller.weightLossQuestions[index].options.length,
                     itemBuilder: (context, index2) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 24.0),
-                        margin: const EdgeInsets.only(bottom: 10.0),
-                        decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: TextWidget(
-                          text: controller
-                              .weightLossQuestions[index].options[index2],
+                      return GestureDetector(
+                        onTap: () {
+                          print(controller
+                              .weightLossQuestions[index].options[index2]);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 24.0),
+                          margin: const EdgeInsets.only(bottom: 10.0),
+                          decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: TextWidget(
+                            text: controller
+                                .weightLossQuestions[index].options[index2],
+                          ),
                         ),
                       );
                     })
