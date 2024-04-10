@@ -47,4 +47,6 @@ const Map<String, String> vi = {
   'diary': 'Nhật ký',
   'profile': 'Hồ sơ',
   'exercise': 'Bài tập',
+  'instructions': 'Hướng dẫn',
+  'equipment': 'Thiết bị',
 };

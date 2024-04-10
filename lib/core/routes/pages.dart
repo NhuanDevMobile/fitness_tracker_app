@@ -9,6 +9,10 @@ import 'package:fitness_tracker_app/features/auth/verify/di/email_verification_b
 import 'package:fitness_tracker_app/features/auth/verify/presentation/page/email_verification_page.dart';
 import 'package:fitness_tracker_app/features/main/di/main_binding.dart';
 import 'package:fitness_tracker_app/features/main/presentation/page/main_page.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_binding.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_detail_binding.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_detail_page.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_page.dart';
 import 'package:fitness_tracker_app/features/splash/di/splash_binding.dart';
 import 'package:fitness_tracker_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:get/get.dart';
@@ -46,6 +50,16 @@ class Pages {
       name: Routes.userInfor,
       page: () => const UserInforPage(),
       binding: UserInforBindding(),
+    ),
+    GetPage(
+      name: Routes.exercise,
+      page: () => const ExercisePage(),
+      binding: ExerciseBindding(),
+    ),
+    GetPage(
+      name: Routes.exerciseDetail,
+      page: () => const ExerciseDetailPage(),
+      binding: ExerciseDetailBindding(),
     ),
   ];
 }

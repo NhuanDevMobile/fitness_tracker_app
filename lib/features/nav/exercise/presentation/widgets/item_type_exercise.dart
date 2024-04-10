@@ -5,25 +5,32 @@ import 'package:fitness_tracker_app/features/nav/exercise/models/type_exercise_m
 import 'package:flutter/material.dart';
 
 class ItemTypeExercise extends StatelessWidget {
+  final VoidCallback onTap;
   final TypeExerciseModel item;
-  const ItemTypeExercise({super.key, required this.item});
+  final int index;
+  const ItemTypeExercise(
+      {super.key,
+      required this.item,
+      required this.index,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.89),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              child: Align(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.primary.withOpacity(0.89),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                     child: TextWidget(
                       text: item.name,
                       color: AppColors.white,
@@ -31,12 +38,17 @@ class ItemTypeExercise extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   )),
-            ),
-            Image.asset(
-              item.image,
-              height: 130.0,
-            ),
-          ]),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    item.image,
+                    width: double.infinity,
+                  ),
+                ),
+              ),
+            ]),
+      ),
     );
   }
 }

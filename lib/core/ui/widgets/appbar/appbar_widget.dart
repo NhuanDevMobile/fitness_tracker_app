@@ -1,3 +1,4 @@
+import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +20,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       this.height = 40,
       this.title,
       this.actions,
-      this.backgroundColor = Colors.transparent,
+      this.backgroundColor = AppColors.primary,
       this.onTapIconAction,
       this.leading,
       this.centerTitle = false,
-      this.titleColor = Colors.black,
+      this.titleColor = Colors.white,
       this.callbackLeading})
       : super(key: key);
 
@@ -53,7 +54,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     EdgeInsets.only(top: 4.0, left: 4.0, bottom: 4.0, right: 0),
                 child: Icon(
                   Icons.arrow_back_ios_new,
-                  color: Colors.black,
+                  color: Colors.white,
                 )),
           ),
       actions: actions ?? [],

@@ -1,7 +1,7 @@
 import 'package:fitness_tracker_app/features/nav/diary/di/diary_binding.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/page/diary_page.dart';
-import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_binding.dart';
-import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_page.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/di/type_exercise_binding.dart';
+import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/type_exercise_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +21,8 @@ class MainController extends GetxController {
     if (settings.name == '/exercise') {
       return GetPageRoute(
         settings: settings,
-        page: () => const ExercisePage(),
-        binding: ExerciseBindding(),
+        page: () => const TypeExercisePage(),
+        binding: TypeExerciseBindding(),
         transition: Transition.fadeIn,
       );
     }

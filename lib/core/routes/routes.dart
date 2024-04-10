@@ -6,4 +6,6 @@ abstract class Routes {
   static const register = "/register";
   static const emailVerify = "/emailVerify";
   static const userInfor = "/userInfor";
+  static const exercise = "/exercise";
+  static const exerciseDetail = "/exerciseDetail";
 }
