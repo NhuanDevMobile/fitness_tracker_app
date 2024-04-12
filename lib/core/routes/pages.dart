@@ -13,12 +13,14 @@ import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_binding.da
 import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_detail_binding.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_detail_page.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_page.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/di/water_drinking_binding.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/page/water_drinking_page.dart';
 import 'package:fitness_tracker_app/features/splash/di/splash_binding.dart';
 import 'package:fitness_tracker_app/features/splash/presentation/pages/splash_page.dart';
 import 'package:get/get.dart';
 
 class Pages {
-  static const initial = Routes.main;
+  static const initial = Routes.none;
   static const main = Routes.main;
   static final routes = [
     GetPage(
@@ -60,6 +62,11 @@ class Pages {
       name: Routes.exerciseDetail,
       page: () => const ExerciseDetailPage(),
       binding: ExerciseDetailBindding(),
+    ),
+    GetPage(
+      name: Routes.waterDrink,
+      page: () => const WaterDrinkingPage(),
+      binding: WaterDrinkingBindding(),
     ),
   ];
 }

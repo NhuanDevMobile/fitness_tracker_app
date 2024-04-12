@@ -1,13 +1,15 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_water_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-class DiaryPage extends StatelessWidget {
+class DiaryPage extends GetView<DiaryController> {
   const DiaryPage({super.key});
 
   @override
@@ -21,16 +23,29 @@ class DiaryPage extends StatelessWidget {
         leading: SvgPicture.asset('assets/icons/ic_calendar.svg'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const ItemResultDiary(),
-            const ItemWaterWidget(),
-            _buildDailyMeal(),
-            _buildExercise(),
-          ],
-        ),
-      ),
+          child: GetBuilder<DiaryController>(
+        id: "fetchDiary",
+        builder: (_) => controller.user == null
+            ? const SizedBox.shrink()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ItemResultDiary(
+                    kCal: controller.user!.getKcal(),
+                  ),
+                  ItemWaterWidget(
+                    value: 0.5,
+                    recommendedValue: controller.user!.getWater(),
+                    onTap: () {
+                      controller.onTapWater();
+                    },
+                    consumedWater: controller.consumedWater,
+                  ),
+                  _buildDailyMeal(),
+                  _buildExercise(),
+                ],
+              ),
+      )),
     );
   }
 

@@ -41,10 +41,11 @@ class UserInforPage extends GetView<UserInforController> {
           controller.nextPage();
         },
         text: "continue",
-        backgroundColor:
-            controller.currentPage.value == 0 && controller.gender.value == ""
-                ? AppColors.grey
-                : AppColors.primary,
+        backgroundColor: controller.currentPage.value == 0 &&
+                    controller.gender.value == "" ||
+                controller.displayName.text.isEmpty
+            ? AppColors.grey
+            : AppColors.primary,
       ),
     );
   }

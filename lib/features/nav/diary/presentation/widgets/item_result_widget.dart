@@ -8,7 +8,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ItemResultDiary extends StatelessWidget {
-  const ItemResultDiary({super.key});
+  final double kCal;
+  const ItemResultDiary({super.key, required this.kCal});
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +49,10 @@ class ItemResultDiary extends StatelessWidget {
                 const SizedBox(height: 12.0),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: TextSpanWidget(
                         text1: "energy_input",
-                        text2: "2072Kcal",
+                        text2: "$kCal Kcal",
                         textColor2: AppColors.primary,
                         fontWeight2: FontWeight.bold,
                       ),

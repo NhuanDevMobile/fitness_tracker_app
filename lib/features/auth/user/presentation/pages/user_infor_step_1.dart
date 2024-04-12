@@ -23,7 +23,13 @@ class UserInforStep1 extends GetView<UserInforController> {
             fontWeight: FontWeight.w600,
           ),
           const SizedBox(height: 6.0),
-          const TextFieldWidget(),
+          TextFieldWidget(
+            controller: controller.displayName,
+            onChanged: (value) {
+              controller.displayName.text = value;
+              controller.update(["fetchUserInformation"]);
+            },
+          ),
           const SizedBox(height: 12.0),
           const TextWidget(
             text: "what_is_your_gender",

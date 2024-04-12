@@ -1,11 +1,23 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
-import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ItemWaterWidget extends StatelessWidget {
-  const ItemWaterWidget({super.key});
+  final double value;
+  final double recommendedValue;
+  final VoidCallback onTap;
+  final int consumedWater;
+
+  const ItemWaterWidget({
+    super.key,
+    required this.value,
+    required this.recommendedValue,
+    required this.onTap,
+    required this.consumedWater,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +27,7 @@ class ItemWaterWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
-            text: "Water",
+            text: "water",
             fontWeight: FontWeight.w600,
             color: AppColors.black,
           ),
@@ -41,7 +53,7 @@ class ItemWaterWidget extends StatelessWidget {
                   width: 10.0,
                   height: 75.0,
                   decoration: const BoxDecoration(
-                    color: AppColors.purple,
+                    color: AppColors.blue,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       bottomLeft: Radius.circular(12),
@@ -53,45 +65,51 @@ class ItemWaterWidget extends StatelessWidget {
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        TextWidget(
-                          text: "Water",
-                          color: AppColors.purple,
+                        const TextWidget(
+                          text: "water",
+                          color: AppColors.blue,
                           fontWeight: FontWeight.w600,
                         ),
-                        SizedBox(width: 4.0),
+                        const SizedBox(width: 4.0),
                         TextWidget(
-                          text: "0.9L (75%)",
+                          text:
+                              "${consumedWater / 1000} L (${CalculatorUtils.calculateWaterPercentage(consumedWater: consumedWater, targetWater: recommendedValue * 1000).toInt()}%)",
                           color: AppColors.black,
                           fontWeight: FontWeight.w600,
                         ),
                       ],
                     ),
                     const SizedBox(height: 4.0),
-                    const TextWidget(
-                      text: "2.5L",
-                      color: AppColors.grey,
-                      size: AppDimens.textSize14,
-                      fontWeight: FontWeight.w400,
+                    TextSpanWidget(
+                      text1: "recomeded_util_now",
+                      text2: "$recommendedValue L",
                     ),
                     const SizedBox(height: 4.0),
                     LinearProgressIndicator(
-                      value: 0.75,
+                      value: CalculatorUtils.calculateWaterPercentage(
+                                  consumedWater: consumedWater,
+                                  targetWater: recommendedValue * 1000)
+                              .toInt() /
+                          100,
                       minHeight: 10.0,
                       borderRadius: BorderRadius.circular(10),
                       backgroundColor: AppColors.grey2,
                       valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.purple,
+                        AppColors.blue,
                       ),
                     )
                   ],
                 )),
                 const SizedBox(width: 12.0),
-                SvgPicture.asset(
-                  "assets/icons/ic_add.svg",
-                  height: 40.0,
-                  width: 40.0,
+                GestureDetector(
+                  onTap: onTap,
+                  child: SvgPicture.asset(
+                    "assets/icons/ic_add.svg",
+                    height: 40.0,
+                    width: 40.0,
+                  ),
                 ),
                 const SizedBox(width: 12.0),
               ],

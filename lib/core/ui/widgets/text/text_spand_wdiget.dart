@@ -7,6 +7,7 @@ class TextSpanWidget extends StatelessWidget {
   final String text1;
   final String text2;
   final double size;
+  final FontWeight fontWeight1;
   final FontWeight fontWeight2;
   final Color textColor2;
   const TextSpanWidget({
@@ -15,6 +16,7 @@ class TextSpanWidget extends StatelessWidget {
     required this.text2,
     this.size = 16.0,
     this.fontWeight2 = FontWeight.normal,
+    this.fontWeight1 = FontWeight.normal,
     this.textColor2 = AppColors.black,
   });
 
@@ -34,9 +36,9 @@ class TextSpanWidget extends StatelessWidget {
             text: text1.tr,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: size,
-                overflow: TextOverflow.ellipsis,
-              ),
+                  fontSize: size,
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: fontWeight1),
             ),
           ),
           const TextSpan(text: " "),

@@ -11,7 +11,7 @@ class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const transparent = Colors.transparent;
   static const error = Color(0xFFF83758);
-  static const purple = Color(0xFF3D60F4);
+  static const blue = Color(0xFF5DCCFC);
   static Color getColorBMI(double bmi) {
     if (bmi < 18.5) {
       return const Color(0xFF84CDEE);

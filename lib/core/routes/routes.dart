@@ -8,4 +8,5 @@ abstract class Routes {
   static const userInfor = "/userInfor";
   static const exercise = "/exercise";
   static const exerciseDetail = "/exerciseDetail";
+  static const waterDrink = "/waterDrink";
 }

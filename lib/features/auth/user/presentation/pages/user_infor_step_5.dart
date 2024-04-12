@@ -1,4 +1,5 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/auth/user/presentation/controller/user_information_controller.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,16 @@ class UserInforStep5 extends GetView<UserInforController> {
           itemCount: controller.weightLossQuestions.length,
           itemBuilder: (context, index) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextWidget(
-                    text: controller.weightLossQuestions[index].question),
+                TextSpanWidget(
+                  text1: controller.weightLossQuestions[index].question,
+                  fontWeight1: FontWeight.bold,
+                  text2: controller.weightLossQuestions[index].required!
+                      ? "(*)"
+                      : "",
+                  textColor2: AppColors.error,
+                ),
                 const SizedBox(height: 12.0),
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -32,16 +40,38 @@ class UserInforStep5 extends GetView<UserInforController> {
                     itemBuilder: (context, index2) {
                       return GestureDetector(
                         onTap: () {
-                          print(controller
-                              .weightLossQuestions[index].options[index2]);
+                          controller.onSeletedOption(
+                            value: controller
+                                .weightLossQuestions[index].options[index2],
+                            index: index,
+                            optionIndex: index2,
+                          );
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 24.0),
+                              vertical: 10.0, horizontal: 12.0),
                           margin: const EdgeInsets.only(bottom: 10.0),
                           decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(10.0)),
+                              color: controller.weightLossQuestions[index]
+                                              .selectedOption !=
+                                          null &&
+                                      index2 ==
+                                          controller.weightLossQuestions[index]
+                                              .selectedOption
+                                  ? AppColors.primary.withOpacity(0.6)
+                                  : AppColors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: controller.weightLossQuestions[index]
+                                              .selectedOption !=
+                                          null &&
+                                      index2 ==
+                                          controller.weightLossQuestions[index]
+                                              .selectedOption
+                                  ? Border.all(
+                                      width: 2.0,
+                                      color: AppColors.primary,
+                                    )
+                                  : null),
                           child: TextWidget(
                             text: controller
                                 .weightLossQuestions[index].options[index2],

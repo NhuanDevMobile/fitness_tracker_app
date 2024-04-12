@@ -49,4 +49,10 @@ const Map<String, String> vi = {
   'exercise': 'Bài tập',
   'instructions': 'Hướng dẫn',
   'equipment': 'Thiết bị',
+  'water': 'Nước',
+  'recomeded_util_now': 'Đề xuất cho hôm nay',
+  'please_select_required_questions': 'Vui lòng chọn các câu hỏi bắt buộc',
+  'drink_water': 'Uống nước',
+  'add_water': 'Thêm nước',
+  'custom': 'Tùy chỉnh',
 };

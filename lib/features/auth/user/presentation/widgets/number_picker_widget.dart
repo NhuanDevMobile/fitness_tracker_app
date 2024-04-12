@@ -47,7 +47,7 @@ class _NumberPickerWidgetState extends State<NumberPickerWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height,
-      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       decoration: BoxDecoration(
         color: AppColors.secondary.withOpacity(0.6),
         borderRadius: const BorderRadius.all(
