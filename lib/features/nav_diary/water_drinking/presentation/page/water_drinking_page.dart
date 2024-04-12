@@ -155,7 +155,8 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                     child: LiquidCircularProgressIndicator(
                       value: CalculatorUtils.calculateWaterPercentage(
                             consumedWater: controller.consumedWater,
-                            targetWater: controller.argument.recommendedWater,
+                            targetWater:
+                                controller.argument.recommendedWater * 1000,
                           ) /
                           100, // Defaults to 0.5.
                       valueColor: AlwaysStoppedAnimation(
