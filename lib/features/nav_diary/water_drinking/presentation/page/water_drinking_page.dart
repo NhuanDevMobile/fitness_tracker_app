@@ -4,6 +4,7 @@ import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
+import 'package:fitness_tracker_app/features/banner/banner_admod.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/controller/water_drinking_controller.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/widgets/item_water_amount.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/widgets/water_animated_loader.dart';
@@ -28,6 +29,7 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
         child: Column(
           children: [
             _buildWaterResult(),
+            const BannerAdMobDisplay(),
             _buildDairyWater(),
           ],
         ),

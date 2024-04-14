@@ -1,3 +1,4 @@
+import 'package:fitness_tracker_app/core/configs/enum.dart';
 import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
 
 class UserModel {
@@ -113,7 +114,7 @@ class UserModel {
     }
   }
 
-  double getKcal() {
+  int getKcal() {
     if (weight == null || height == null || age == null || gender == null) {
       return 0;
     } else {
@@ -124,7 +125,9 @@ class UserModel {
         gender: gender!,
         activityLevel: acitityValue(),
       );
-      return double.parse(dailyEnergyIntake.toStringAsFixed(2));
+      // Chuyển đổi kết quả từ double sang int
+      int kcalInt = dailyEnergyIntake.toInt();
+      return kcalInt;
     }
   }
 
@@ -132,5 +135,24 @@ class UserModel {
     if (weight == null) return 0;
     return double.parse(
         CalculatorUtils.calculateDailyWaterIntake(weight!).toStringAsFixed(2));
+  }
+
+  int getDailyMeal({required DailyMeals dailyMeals}) {
+    double mealKcal = 0;
+
+    if (getKcal() == 0) {
+      mealKcal = 0;
+    } else {
+      if (dailyMeals == DailyMeals.breakfast) {
+        mealKcal = getKcal() * 0.25;
+      } else if (dailyMeals == DailyMeals.lunch) {
+        mealKcal = getKcal() * 0.35;
+      } else if (dailyMeals == DailyMeals.dinner) {
+        mealKcal = getKcal() * 0.3;
+      } else {
+        mealKcal = getKcal() * 0.1;
+      }
+    }
+    return mealKcal.toInt();
   }
 }

@@ -4,11 +4,22 @@ import 'package:fitness_tracker_app/core/ui/widgets/my_separator_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class ItemDailyMeal extends StatelessWidget {
   final Color color;
   final String title;
-  const ItemDailyMeal({super.key, required this.color, required this.title});
+  final int kCal;
+  final double consumeKcal;
+  final VoidCallback onTap;
+  const ItemDailyMeal({
+    super.key,
+    required this.color,
+    required this.title,
+    required this.kCal,
+    required this.consumeKcal,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +60,16 @@ class ItemDailyMeal extends StatelessWidget {
                             size: AppDimens.textSize20,
                           ),
                           const SizedBox(width: 4.0),
-                          const TextWidget(
-                            text: "306 Kcal",
+                          TextWidget(
+                            text: "$kCal Kcal",
                             color: AppColors.black,
                             fontWeight: FontWeight.w600,
                           ),
                         ],
                       ),
                       const SizedBox(height: 2.0),
-                      const TextWidget(
-                        text: "Recomended 400-500 Kcal",
+                      TextWidget(
+                        text: "${"recomeded_util_now".tr} $kCal Kcal",
                         color: AppColors.grey,
                         size: AppDimens.textSize14,
                         fontWeight: FontWeight.w400,
@@ -66,10 +77,13 @@ class ItemDailyMeal extends StatelessWidget {
                     ],
                   ),
                 ),
-                SvgPicture.asset(
-                  "assets/icons/ic_add.svg",
-                  height: 40.0,
-                  width: 40.0,
+                GestureDetector(
+                  onTap: onTap,
+                  child: SvgPicture.asset(
+                    "assets/icons/ic_add.svg",
+                    height: 40.0,
+                    width: 40.0,
+                  ),
                 ),
               ],
             ),

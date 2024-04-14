@@ -1,4 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/configs/enum.dart';
+import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
@@ -50,35 +52,50 @@ class DiaryPage extends GetView<DiaryController> {
   }
 
   _buildDailyMeal() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextWidget(
-            text: "Daily meals",
+          const TextWidget(
+            text: "daily_meals",
             fontWeight: FontWeight.w600,
             color: AppColors.black,
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           ItemDailyMeal(
             color: AppColors.primary,
             title: 'Breakfast',
+            kCal:
+                controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
+            consumeKcal: 0,
+            onTap: () {
+              Get.toNamed(Routes.foods);
+            },
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           ItemDailyMeal(
             color: AppColors.secondary,
             title: 'Lunch',
+            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.lunch),
+            consumeKcal: 0,
+            onTap: () {},
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           ItemDailyMeal(
-            color: Color(0xFF12E5B0),
+            color: const Color(0xFF12E5B0),
             title: 'Dinner',
+            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.dinner),
+            consumeKcal: 0,
+            onTap: () {},
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           ItemDailyMeal(
-            color: Color(0xffB575E7),
+            color: const Color(0xffB575E7),
             title: 'Snack',
+            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.snack),
+            consumeKcal: 0,
+            onTap: () {},
           ),
         ],
       ),
@@ -86,20 +103,24 @@ class DiaryPage extends GetView<DiaryController> {
   }
 
   _buildExercise() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextWidget(
-            text: "Daily Exercise",
+          const TextWidget(
+            text: "exercise",
             fontWeight: FontWeight.w600,
             color: AppColors.black,
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           ItemDailyMeal(
             color: AppColors.error,
             title: 'Snack',
+            kCal:
+                controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
+            consumeKcal: 0,
+            onTap: () {},
           ),
         ],
       ),

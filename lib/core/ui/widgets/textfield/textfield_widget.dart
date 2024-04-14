@@ -23,6 +23,7 @@ class TextFieldWidget extends StatelessWidget {
   final String? labelText;
   final TextEditingController? controller;
   final TextInputType keyboardType;
+  final double? borderRadius;
 
   const TextFieldWidget(
       {Key? key,
@@ -44,6 +45,7 @@ class TextFieldWidget extends StatelessWidget {
       this.labelText,
       this.textColor,
       this.keyboardType = TextInputType.text,
+      this.borderRadius = 10.0,
       this.onCompleted})
       : super(key: key);
 
@@ -86,11 +88,11 @@ class TextFieldWidget extends StatelessWidget {
               color: hintColor ?? AppColors.primary),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(borderRadius!),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1, color: AppColors.primary),
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(borderRadius!),
           ),
         ),
       ),

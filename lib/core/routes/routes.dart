@@ -9,4 +9,6 @@ abstract class Routes {
   static const exercise = "/exercise";
   static const exerciseDetail = "/exerciseDetail";
   static const waterDrink = "/waterDrink";
+  static const foods = "/foods";
+  static const foodDetail = "/foodDetail";
 }
