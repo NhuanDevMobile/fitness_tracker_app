@@ -31,7 +31,6 @@ class FoodDetailController extends GetxController {
       (element) => element.id == id,
       orElse: () => NutritionModel(id: id, name: "Unknown"),
     );
-
     return matchedNutrition.name ?? "";
   }
 }
