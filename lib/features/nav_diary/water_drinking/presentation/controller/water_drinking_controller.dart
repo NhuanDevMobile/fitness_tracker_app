@@ -22,6 +22,7 @@ class WaterDrinkingController extends GetxController {
   UserModel user = UserModel();
 
   final ScrollController scrollController = ScrollController();
+  TextEditingController addWaterOptionController = TextEditingController();
   final WaterArgument argument = Get.arguments;
   List<WaterModel> waterDiarys = [];
   int consumedWater = 0;
@@ -46,6 +47,21 @@ class WaterDrinkingController extends GetxController {
         curve: Curves.ease,
       );
     }
+    update(["fetchWaterResult"]);
+  }
+
+  void addWaterOption() {
+    if (addWaterOptionController.text.isNotEmpty) {
+      waterAmounts.add(int.parse(addWaterOptionController.text));
+      saveWaterAmountsUseCase.saveWaterAmounts(waterAmounts);
+      addWaterOptionController.clear();
+      update(["fetchWaterResult"]);
+    }
+  }
+
+  void deleteWaterOption(int index) {
+    waterAmounts.removeAt(index);
+    saveWaterAmountsUseCase.saveWaterAmounts(waterAmounts);
     update(["fetchWaterResult"]);
   }
 

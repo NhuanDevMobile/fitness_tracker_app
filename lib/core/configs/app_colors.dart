@@ -1,3 +1,4 @@
+import 'package:fitness_tracker_app/core/extensions/color.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -11,6 +12,9 @@ class AppColors {
   static const white = Color(0xFFFFFFFF);
   static const transparent = Colors.transparent;
   static const error = Color(0xFFF83758);
+  static const colorPink = Color(0xFF9FA8DA);
+  static Color black4 = HexColor('#1F1F1F');
+  static const gray = Color(0xffE3E8EE);
   static const blue = Color(0xFF5DCCFC);
   static Color getColorBMI(double bmi) {
     if (bmi < 18.5) {

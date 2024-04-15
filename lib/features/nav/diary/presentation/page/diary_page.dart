@@ -1,6 +1,8 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/core/utils/date_time.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
@@ -17,10 +19,30 @@ class DiaryPage extends GetView<DiaryController> {
     return Scaffold(
       appBar: AppBarWidget(
         backgroundColor: AppColors.primary,
-        title: "2 May, Monday",
+        title: DatetimeUtil.formatDateTimeFormat(controller.dateTime),
         centerTitle: true,
         titleColor: AppColors.white,
-        leading: SvgPicture.asset('assets/icons/ic_calendar.svg'),
+        leading: GestureDetector(
+          onTap: () async {
+            final result = await Get.bottomSheet(
+              CustomCalendar(
+                selectedDay: controller.dateTime,
+              ),
+              isScrollControlled: true,
+              isDismissible: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16.0),
+                ),
+              ),
+            );
+            if (result != null) {
+              controller.dateTime = result;
+              // controller.update(['updateTitle']);
+            }
+          },
+          child: SvgPicture.asset('assets/icons/ic_calendar.svg'),
+        ),
       ),
       body: SingleChildScrollView(
           child: GetBuilder<DiaryController>(
