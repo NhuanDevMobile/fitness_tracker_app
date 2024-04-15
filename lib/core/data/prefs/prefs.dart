@@ -25,7 +25,9 @@ class Prefs {
 
   Future<int> getInt(String key) async {
     final SharedPreferences prefs = await _prefs;
-    return prefs.getInt(key) ?? 0;
+    final int? value = prefs.getInt(key); // Lấy giá trị và gán vào biến value
+    // Kiểm tra nếu value là null thì trả về 0, ngược lại trả về giá trị value
+    return value ?? 0;
   }
 
   Future set(String key, dynamic value) async {

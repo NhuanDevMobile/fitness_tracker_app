@@ -17,7 +17,11 @@ import 'package:fitness_tracker_app/features/nav_diary/foods/di/food_binding.dar
 import 'package:fitness_tracker_app/features/nav_diary/foods/di/food_detail_binding.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/food_detail_page.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/food_page.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/di/create_schedule_water_binding.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/di/schedule_water_binding.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/di/water_drinking_binding.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/page/create_schedule_water.dart';
+import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/page/schedule_water.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/page/water_drinking_page.dart';
 import 'package:fitness_tracker_app/features/splash/di/splash_binding.dart';
 import 'package:fitness_tracker_app/features/splash/presentation/pages/splash_page.dart';
@@ -81,6 +85,16 @@ class Pages {
       name: Routes.foodDetail,
       page: () => const FoodDetailPage(),
       binding: FoodDetailBindding(),
+    ),
+    GetPage(
+      name: Routes.scheduleWater,
+      page: () => const ScheduleWaterPage(),
+      binding: ScheduleWaterBinding(),
+    ),
+    GetPage(
+      name: Routes.createScheduleWater,
+      page: () => const CreateScheduleWater(),
+      binding: CreateScheduleWaterBinding(),
     ),
   ];
 }

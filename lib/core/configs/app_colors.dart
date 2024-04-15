@@ -13,7 +13,14 @@ class AppColors {
   static const transparent = Colors.transparent;
   static const error = Color(0xFFF83758);
   static const colorPink = Color(0xFF9FA8DA);
+  static Color colorPink2 = HexColor('#b20088');
+  static Color colorPink3 = HexColor('#f5ecef');
   static Color black4 = HexColor('#1F1F1F');
+  static Color red = HexColor('#FF0000');
+  static Color greenBold = HexColor('#4CAF50');
+  static Color yellow1 = HexColor('#FFBA00');
+  static Color yellow2 = HexColor('#FFD974');
+  static Color yellow3 = HexColor('#FFBA00');
   static const gray = Color(0xffE3E8EE);
   static const blue = Color(0xFF5DCCFC);
   static Color getColorBMI(double bmi) {
