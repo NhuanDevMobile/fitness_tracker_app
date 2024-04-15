@@ -1,4 +1,5 @@
 import 'package:fitness_tracker_app/core/routes/routes.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/features/nav/profile/presentation/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,10 @@ class ProfilePage extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
+      appBar: const AppBarWidget(
+        leading: SizedBox.shrink(),
+        title: "profile",
+        centerTitle: true,
       ),
       body: Center(
         child: Column(

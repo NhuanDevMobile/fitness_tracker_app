@@ -2,6 +2,7 @@ import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/features/main/presentation/controller/main_controller.dart';
 import 'package:fitness_tracker_app/features/main/presentation/widgets/item_bottom_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class MainPage extends GetView<MainController> {
@@ -10,14 +11,14 @@ class MainPage extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Navigator(
-          key: Get.nestedKey(1),
-          initialRoute: "/diary",
-          onGenerateRoute: controller.onGenerateRoute,
-        ),
-        bottomNavigationBar: _bottomNavigationBar(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Container(
+      body: Navigator(
+        key: Get.nestedKey(1),
+        initialRoute: "/diary",
+        onGenerateRoute: controller.onGenerateRoute,
+      ),
+      bottomNavigationBar: _bottomNavigationBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
           height: 64,
           width: 64,
           decoration: BoxDecoration(
@@ -28,15 +29,16 @@ class MainPage extends GetView<MainController> {
               color: AppColors.white,
             ),
           ),
-          child: IconButton(
-            icon: const Icon(
-              Icons.add,
-              size: 32,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SvgPicture.asset(
+              "assets/icons/ic_clock.svg",
+              height: 32.0,
+              width: 32.0,
               color: AppColors.white,
             ),
-            onPressed: () {},
-          ),
-        ));
+          )),
+    );
   }
 
   _bottomNavigationBar() {
@@ -48,6 +50,7 @@ class MainPage extends GetView<MainController> {
           child: BottomAppBar(
             child: Container(
                 height: 60.0,
+                width: double.infinity,
                 color: AppColors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,8 +86,8 @@ class MainPage extends GetView<MainController> {
                       },
                     ),
                     ItemBottomBarWidget(
-                      icon: 'assets/icons/ic_diary.svg',
-                      title: 'Trang chủ',
+                      icon: 'assets/icons/ic_profile.svg',
+                      title: 'profile',
                       index: 3,
                       currentIndex: controller.currentIndex.value,
                       onTap: () {

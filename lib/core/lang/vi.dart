@@ -55,4 +55,8 @@ const Map<String, String> vi = {
   'drink_water': 'Uống nước',
   'add_water': 'Thêm nước',
   'custom': 'Tùy chỉnh',
+  'daily_meals': 'Bữa ăn hàng ngày',
+  'search_food': 'Tìm kiếm thực phẩm',
+  'nutrition_value': "Giá trị dinh dưỡng",
+  'nutrition_infor': "Thông tin dinh dưỡng",
 };

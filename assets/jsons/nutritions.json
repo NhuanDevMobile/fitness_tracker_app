@@ -1,0 +1,1293 @@
+[
+    {
+        "id": 301,
+        "serving_qty": 1,
+        "category": "CA",
+        "name": "Calcium, Ca",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 205,
+        "serving_qty": 1,
+        "category": "CHOCDF",
+        "name": "Carbohydrate, by difference",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 601,
+        "serving_qty": 1,
+        "category": "CHOLE",
+        "name": "Cholesterol",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 208,
+        "serving_qty": 1,
+        "category": "ENERC_KCAL",
+        "name": "Energy",
+        "unit": "kcal",
+        "value": 1
+    },
+    {
+        "id": 606,
+        "serving_qty": 1,
+        "category": "FASAT",
+        "name": "Fatty acids, total saturated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 204,
+        "serving_qty": 1,
+        "category": "FAT",
+        "name": "Total lipid (fat)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 605,
+        "serving_qty": 1,
+        "category": "FATRN",
+        "name": "Fatty acids, total trans",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 303,
+        "serving_qty": 1,
+        "category": "FE",
+        "name": "Iron, Fe",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 291,
+        "serving_qty": 1,
+        "category": "FIBTG",
+        "name": "Fiber, total dietary",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 306,
+        "serving_qty": 1,
+        "category": "K",
+        "name": "Potassium, K",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 307,
+        "serving_qty": 1,
+        "category": "NA",
+        "name": "Sodium, Na",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 203,
+        "serving_qty": 1,
+        "category": "PROCNT",
+        "name": "Protein",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 269,
+        "serving_qty": 1,
+        "category": "SUGAR",
+        "name": "Sugars, total",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 539,
+        "serving_qty": 1,
+        "category": "SUGAR_ADD",
+        "name": "Sugars, added",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 324,
+        "serving_qty": 1,
+        "category": "VITD",
+        "name": "Vitamin D",
+        "unit": "IU",
+        "value": 1
+    },
+    {
+        "id": 299,
+        "serving_qty": 1,
+        "category": "SUGAR_ALC",
+        "name": "Sugar Alcohol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1001,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Erythritol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1006,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Allulose",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1002,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Glycerin",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 290,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Xylitol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 261,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Sorbitol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 260,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Mannitol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1003,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Maltitol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1004,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Isomalt",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 1005,
+        "serving_qty": 1,
+        "category": "#N/A",
+        "name": "Lactitol",
+        "unit": "g",
+        "value": 0
+    },
+    {
+        "id": 513,
+        "serving_qty": 0,
+        "category": "ALA_G",
+        "name": "Alanine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 221,
+        "serving_qty": 0,
+        "category": "ALC",
+        "name": "Alcohol, ethyl",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 511,
+        "serving_qty": 0,
+        "category": "ARG_G",
+        "name": "Arginine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 207,
+        "serving_qty": 0,
+        "category": "ASH",
+        "name": "Ash",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 514,
+        "serving_qty": 0,
+        "category": "ASP_G",
+        "name": "Aspartic acid",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 454,
+        "serving_qty": 0,
+        "category": "BETN",
+        "name": "Betaine",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 262,
+        "serving_qty": 0,
+        "category": "CAFFN",
+        "name": "Caffeine",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 639,
+        "serving_qty": 0,
+        "category": "CAMD5",
+        "name": "Campesterol",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 322,
+        "serving_qty": 0,
+        "category": "CARTA",
+        "name": "Carotene, alpha",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 321,
+        "serving_qty": 0,
+        "category": "CARTB",
+        "name": "Carotene, beta",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 326,
+        "serving_qty": 0,
+        "category": "CHOCAL",
+        "name": "Vitamin D3 (cholecalciferol)",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 421,
+        "serving_qty": 0,
+        "category": "CHOLN",
+        "name": "Choline, total",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 334,
+        "serving_qty": 0,
+        "category": "CRYPX",
+        "name": "Cryptoxanthin, beta",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 312,
+        "serving_qty": 0,
+        "category": "CU",
+        "name": "Copper, Cu",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 507,
+        "serving_qty": 0,
+        "category": "CYS_G",
+        "name": "Cystine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 268,
+        "serving_qty": 0,
+        "category": "ENERC_KJ",
+        "name": "Energy",
+        "unit": "kJ",
+        "value": 1
+    },
+    {
+        "id": 325,
+        "serving_qty": 0,
+        "category": "ERGCAL",
+        "name": "Vitamin D2 (ergocalciferol)",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 610,
+        "serving_qty": 0,
+        "category": "F10D0",
+        "name": "10:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 611,
+        "serving_qty": 0,
+        "category": "F12D0",
+        "name": "12:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 696,
+        "serving_qty": 0,
+        "category": "F13D0",
+        "name": "13:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 612,
+        "serving_qty": 0,
+        "category": "F14D0",
+        "name": "14:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 625,
+        "serving_qty": 0,
+        "category": "F14D1",
+        "name": "14:01",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 652,
+        "serving_qty": 0,
+        "category": "F15D0",
+        "name": "15:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 697,
+        "serving_qty": 0,
+        "category": "F15D1",
+        "name": "15:01",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 613,
+        "serving_qty": 0,
+        "category": "F16D0",
+        "name": "16:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 626,
+        "serving_qty": 0,
+        "category": "F16D1",
+        "name": "16:1 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 673,
+        "serving_qty": 0,
+        "category": "F16D1C",
+        "name": "16:1 c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 662,
+        "serving_qty": 0,
+        "category": "F16D1T",
+        "name": "16:1 t",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 653,
+        "serving_qty": 0,
+        "category": "F17D0",
+        "name": "17:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 687,
+        "serving_qty": 0,
+        "category": "F17D1",
+        "name": "17:01",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 614,
+        "serving_qty": 0,
+        "category": "F18D0",
+        "name": "18:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 617,
+        "serving_qty": 0,
+        "category": "F18D1",
+        "name": "18:1 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 674,
+        "serving_qty": 0,
+        "category": "F18D1C",
+        "name": "18:1 c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 663,
+        "serving_qty": 0,
+        "category": "F18D1T",
+        "name": "18:1 t",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 859,
+        "serving_qty": 0,
+        "category": "F18D1TN7",
+        "name": "18:1-11t (18:1t n-7)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 618,
+        "serving_qty": 0,
+        "category": "F18D2",
+        "name": "18:2 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 670,
+        "serving_qty": 0,
+        "category": "F18D2CLA",
+        "name": "18:2 CLAs",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 675,
+        "serving_qty": 0,
+        "category": "F18D2CN6",
+        "name": "18:2 n-6 c,c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 669,
+        "serving_qty": 0,
+        "category": "F18D2TT",
+        "name": "18:2 t,t",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 619,
+        "serving_qty": 0,
+        "category": "F18D3",
+        "name": "18:3 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 851,
+        "serving_qty": 0,
+        "category": "F18D3CN3",
+        "name": "18:3 n-3 c,c,c (ALA)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 685,
+        "serving_qty": 0,
+        "category": "F18D3CN6",
+        "name": "18:3 n-6 c,c,c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 627,
+        "serving_qty": 0,
+        "category": "F18D4",
+        "name": "18:04",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 615,
+        "serving_qty": 0,
+        "category": "F20D0",
+        "name": "20:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 628,
+        "serving_qty": 0,
+        "category": "F20D1",
+        "name": "20:01",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 672,
+        "serving_qty": 0,
+        "category": "F20D2CN6",
+        "name": "20:2 n-6 c,c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 689,
+        "serving_qty": 0,
+        "category": "F20D3",
+        "name": "20:3 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 852,
+        "serving_qty": 0,
+        "category": "F20D3N3",
+        "name": "20:3 n-3",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 853,
+        "serving_qty": 0,
+        "category": "F20D3N6",
+        "name": "20:3 n-6",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 620,
+        "serving_qty": 0,
+        "category": "F20D4",
+        "name": "20:4 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 855,
+        "serving_qty": 0,
+        "category": "F20D4N6",
+        "name": "20:4 n-6",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 629,
+        "serving_qty": 0,
+        "category": "F20D5",
+        "name": "20:5 n-3 (EPA)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 857,
+        "serving_qty": 0,
+        "category": "F21D5",
+        "name": "21:05",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 624,
+        "serving_qty": 0,
+        "category": "F22D0",
+        "name": "22:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 630,
+        "serving_qty": 0,
+        "category": "F22D1",
+        "name": "22:1 undifferentiated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 858,
+        "serving_qty": 0,
+        "category": "F22D4",
+        "name": "22:04",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 631,
+        "serving_qty": 0,
+        "category": "F22D5",
+        "name": "22:5 n-3 (DPA)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 621,
+        "serving_qty": 0,
+        "category": "F22D6",
+        "name": "22:6 n-3 (DHA)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 654,
+        "serving_qty": 0,
+        "category": "F24D0",
+        "name": "24:00:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 671,
+        "serving_qty": 0,
+        "category": "F24D1C",
+        "name": "24:1 c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 607,
+        "serving_qty": 0,
+        "category": "F4D0",
+        "name": "4:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 608,
+        "serving_qty": 0,
+        "category": "F6D0",
+        "name": "6:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 609,
+        "serving_qty": 0,
+        "category": "F8D0",
+        "name": "8:00",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 645,
+        "serving_qty": 0,
+        "category": "FAMS",
+        "name": "Fatty acids, total monounsaturated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 646,
+        "serving_qty": 0,
+        "category": "FAPU",
+        "name": "Fatty acids, total polyunsaturated",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 693,
+        "serving_qty": 0,
+        "category": "FATRNM",
+        "name": "Fatty acids, total trans-monoenoic",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 695,
+        "serving_qty": 0,
+        "category": "FATRNP",
+        "name": "Fatty acids, total trans-polyenoic",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 313,
+        "serving_qty": 0,
+        "category": "FLD",
+        "name": "Fluoride, F",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 417,
+        "serving_qty": 0,
+        "category": "FOL",
+        "name": "Folate, total",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 431,
+        "serving_qty": 0,
+        "category": "FOLAC",
+        "name": "Folic acid",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 435,
+        "serving_qty": 0,
+        "category": "FOLDFE",
+        "name": "Folate, DFE",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 432,
+        "serving_qty": 0,
+        "category": "FOLFD",
+        "name": "Folate, food",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 212,
+        "serving_qty": 0,
+        "category": "FRUS",
+        "name": "Fructose",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 287,
+        "serving_qty": 0,
+        "category": "GALS",
+        "name": "Galactose",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 515,
+        "serving_qty": 0,
+        "category": "GLU_G",
+        "name": "Glutamic acid",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 211,
+        "serving_qty": 0,
+        "category": "GLUS",
+        "name": "Glucose (dextrose)",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 516,
+        "serving_qty": 0,
+        "category": "GLY_G",
+        "name": "Glycine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 512,
+        "serving_qty": 0,
+        "category": "HISTN_G",
+        "name": "Histidine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 521,
+        "serving_qty": 0,
+        "category": "HYP",
+        "name": "Hydroxyproline",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 503,
+        "serving_qty": 0,
+        "category": "ILE_G",
+        "name": "Isoleucine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 213,
+        "serving_qty": 0,
+        "category": "LACS",
+        "name": "Lactose",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 504,
+        "serving_qty": 0,
+        "category": "LEU_G",
+        "name": "Leucine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 338,
+        "serving_qty": 0,
+        "category": "LUT+ZEA",
+        "name": "Lutein + zeaxanthin",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 337,
+        "serving_qty": 0,
+        "category": "LYCPN",
+        "name": "Lycopene",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 505,
+        "serving_qty": 0,
+        "category": "LYS_G",
+        "name": "Lysine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 214,
+        "serving_qty": 0,
+        "category": "MALS",
+        "name": "Maltose",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 506,
+        "serving_qty": 0,
+        "category": "MET_G",
+        "name": "Methionine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 304,
+        "serving_qty": 0,
+        "category": "MG",
+        "name": "Magnesium, Mg",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 428,
+        "serving_qty": 0,
+        "category": "MK4",
+        "name": "Menaquinone-4",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 315,
+        "serving_qty": 0,
+        "category": "MN",
+        "name": "Manganese, Mn",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 406,
+        "serving_qty": 0,
+        "category": "NIA",
+        "name": "Niacin",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 573,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "Vitamin E, added",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 578,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "Vitamin B-12, added",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 257,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "Adjusted Protein",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 664,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "22:1 t",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 676,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "22:1 c",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 856,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "18:3i",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 665,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "18:2 t not further defined",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 666,
+        "serving_qty": 0,
+        "category": "NULL",
+        "name": "18:2 i",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 305,
+        "serving_qty": 0,
+        "category": "P",
+        "name": "Phosphorus, P",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 410,
+        "serving_qty": 0,
+        "category": "PANTAC",
+        "name": "Pantothenic acid",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 508,
+        "serving_qty": 0,
+        "category": "PHE_G",
+        "name": "Phenylalanine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 636,
+        "serving_qty": 0,
+        "category": "PHYSTR",
+        "name": "Phytosterols",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 517,
+        "serving_qty": 0,
+        "category": "PRO_G",
+        "name": "Proline",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 319,
+        "serving_qty": 0,
+        "category": "RETOL",
+        "name": "Retinol",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 405,
+        "serving_qty": 0,
+        "category": "RIBF",
+        "name": "Riboflavin",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 317,
+        "serving_qty": 0,
+        "category": "SE",
+        "name": "Selenium, Se",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 518,
+        "serving_qty": 0,
+        "category": "SER_G",
+        "name": "Serine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 641,
+        "serving_qty": 0,
+        "category": "SITSTR",
+        "name": "Beta-sitosterol",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 209,
+        "serving_qty": 0,
+        "category": "STARCH",
+        "name": "Starch",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 638,
+        "serving_qty": 0,
+        "category": "STID7",
+        "name": "Stigmasterol",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 210,
+        "serving_qty": 0,
+        "category": "SUCS",
+        "name": "Sucrose",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 263,
+        "serving_qty": 0,
+        "category": "THEBRN",
+        "name": "Theobromine",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 404,
+        "serving_qty": 0,
+        "category": "THIA",
+        "name": "Thiamin",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 502,
+        "serving_qty": 0,
+        "category": "THR_G",
+        "name": "Threonine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 323,
+        "serving_qty": 0,
+        "category": "TOCPHA",
+        "name": "Vitamin E (alpha-tocopherol)",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 341,
+        "serving_qty": 0,
+        "category": "TOCPHB",
+        "name": "Tocopherol, beta",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 343,
+        "serving_qty": 0,
+        "category": "TOCPHD",
+        "name": "Tocopherol, delta",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 342,
+        "serving_qty": 0,
+        "category": "TOCPHG",
+        "name": "Tocopherol, gamma",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 501,
+        "serving_qty": 0,
+        "category": "TRP_G",
+        "name": "Tryptophan",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 509,
+        "serving_qty": 0,
+        "category": "TYR_G",
+        "name": "Tyrosine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 510,
+        "serving_qty": 0,
+        "category": "VAL_G",
+        "name": "Valine",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 318,
+        "serving_qty": 0,
+        "category": "VITA_IU",
+        "name": "Vitamin A, IU",
+        "unit": "IU",
+        "value": 1
+    },
+    {
+        "id": 320,
+        "serving_qty": 0,
+        "category": "VITA_RAE",
+        "name": "Vitamin A, RAE",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 418,
+        "serving_qty": 0,
+        "category": "VITB12",
+        "name": "Vitamin B-12",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 415,
+        "serving_qty": 0,
+        "category": "VITB6A",
+        "name": "Vitamin B-6",
+        "unit": "mg",
+        "value": 1
+    }, {
+        "id": 401,
+        "serving_qty": 0,
+        "category": "VITC",
+        "name": "Vitamin C, total ascorbic acid",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 328,
+        "serving_qty": 0,
+        "category": "VITD",
+        "name": "Vitamin D (D2 + D3)",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 430,
+        "serving_qty": 0,
+        "category": "VITK1",
+        "name": "Vitamin K (phylloquinone)",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 429,
+        "serving_qty": 0,
+        "category": "VITK1D",
+        "name": "Dihydrophylloquinone",
+        "unit": "µg",
+        "value": 1
+    },
+    {
+        "id": 255,
+        "serving_qty": 0,
+        "category": "WATER",
+        "name": "Water",
+        "unit": "g",
+        "value": 1
+    },
+    {
+        "id": 309,
+        "serving_qty": 0,
+        "category": "ZN",
+        "name": "Zinc, Zn",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 344,
+        "serving_qty": null,
+        "category": "TOCTRA",
+        "name": "Tocotrienol, alpha",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 345,
+        "serving_qty": null,
+        "category": "TOCTRB",
+        "name": "Tocotrienol, beta",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 346,
+        "serving_qty": null,
+        "category": "TOCTRG",
+        "name": "Tocotrienol, gamma",
+        "unit": "mg",
+        "value": 1
+    },
+    {
+        "id": 347,
+        "serving_qty": null,
+        "category": "TOCTRD",
+        "name": "Tocotrienol,delta",
+        "unit": "mg",
+        "value": 1
+    }
+
+    
+    
+   
+]

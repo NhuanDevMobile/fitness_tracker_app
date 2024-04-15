@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ItemResultDiary extends StatelessWidget {
-  final double kCal;
+  final int kCal;
   const ItemResultDiary({super.key, required this.kCal});
 
   @override
