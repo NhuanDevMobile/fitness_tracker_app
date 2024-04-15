@@ -5,6 +5,7 @@ import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/utils/date_time.dart';
+import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/food_argument.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
@@ -92,7 +93,12 @@ class DiaryPage extends GetView<DiaryController> {
                 controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
             consumeKcal: 0,
             onTap: () {
-              Get.toNamed(Routes.foods);
+              Get.toNamed(Routes.foods,
+                  arguments: FoodArgument(
+                    listFood: [],
+                    typeDailyMeal: DailyMeals.breakfast,
+                    dateTime: DateTime.now(),
+                  ));
             },
           ),
           const SizedBox(height: 16.0),

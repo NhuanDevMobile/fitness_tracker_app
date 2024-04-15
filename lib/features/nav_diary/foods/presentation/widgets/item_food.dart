@@ -1,5 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/images/image_network_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/food_model.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +29,10 @@ class ItemFood extends StatelessWidget {
           ),
         ),
         child: Row(children: [
-          SizedBox(
+          ImageNetWotkSquareWidget(
             height: 80.0,
             width: 80.0,
-            child: Image.network(item.photo!.thumb ?? ""),
+            imageUrl: item.photo!.thumb ?? "",
           ),
           const SizedBox(width: 10.0),
           Expanded(
