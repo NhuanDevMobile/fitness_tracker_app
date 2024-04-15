@@ -1,5 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
+import 'package:fitness_tracker_app/core/ui/text_input/simple_input_textfield.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
@@ -115,6 +116,134 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
         });
   }
 
+  Widget buildListOptionWater() {
+    return GetBuilder<WaterDrinkingController>(
+      id: "fetchWaterResult",
+      builder: (logic) {
+        return Container(
+          height: 200.0,
+          padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+          child: ListView.builder(
+              // shrinkWrap: true,
+              itemCount: controller.waterAmounts.length,
+              itemBuilder: (context, index) {
+                int water = controller.waterAmounts[index];
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextWidget(
+                            text: "${water}ml",
+                            size: AppDimens.textSize16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              controller.deleteWaterOption(index);
+                            },
+                            child: const Icon(
+                              Icons.delete_outline_sharp,
+                              size: 20.0,
+                              color: AppColors.black,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const Divider(height: 1, thickness: 1),
+                  ],
+                );
+              }),
+        );
+      },
+    );
+  }
+
+  Widget buildContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextWidget(
+          text: "Khuyến nghị",
+          fontWeight: FontWeight.bold,
+          size: AppDimens.textSize16,
+        ),
+        const SizedBox(height: 5.0),
+        RichText(
+          text: TextSpan(
+              text:
+                  "Mục tiêu hằng ngày mà chúng tôi khuyến nghị dựa trên giới tính và cân nặng của bạn là ",
+              style: TextStyle(
+                  fontSize: AppDimens.textSize16, color: AppColors.black),
+              children: [
+                TextSpan(
+                  text: '2253 ml',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: AppDimens.textSize16,
+                      color: AppColors.colorPink),
+                ),
+              ]),
+        ),
+        const SizedBox(height: 8.0),
+        TextWidget(
+          text: "Nước và tập luyện",
+          fontWeight: FontWeight.bold,
+          size: AppDimens.textSize16,
+        ),
+        const SizedBox(height: 5.0),
+        RichText(
+          text: TextSpan(
+            text:
+                "Nếu bạn đang tập luyện cơ thể sẽ mất nhiều nước. Hãy nhớ uống thêm nước sau khi tập luyện",
+            style: TextStyle(
+                fontSize: AppDimens.textSize16, color: AppColors.black),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildButtonAddWater() {
+    return Column(
+      children: [
+        const Divider(height: 1, thickness: 1),
+        Padding(
+          padding: const EdgeInsets.only(top: 15.0, left: 5.0),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  controller.addWaterOption();
+                },
+                child: const Icon(
+                  IconData(0x2615, fontFamily: 'MaterialIcons'),
+                  size: 30.0,
+                  color: AppColors.black,
+                ),
+              ),
+              const SizedBox(width: 10.0),
+              SizedBox(
+                width: 250.0,
+                child: SimpleInputTextField(
+                  obscureText: false,
+                  height: 40.0,
+                  hintText: 'Thêm ly nước mới',
+                  hintColor: AppColors.gray,
+                  controller: controller.addWaterOptionController,
+                  keyboardType: TextInputType.number,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
   _buildWaterResult() {
     return GetBuilder<WaterDrinkingController>(
         id: "fetchWaterResult",
@@ -143,7 +272,26 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.dialog(
+                              AlertDialog(
+                                backgroundColor: AppColors.white,
+                                elevation: 50.0,
+                                contentPadding: EdgeInsets.zero,
+                                content: Container(
+                                  height: 310.0,
+                                  width: 500.0,
+                                  decoration: const BoxDecoration(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16.0),
+                                    ),
+                                  ),
+                                  child: buildContent(),
+                                ),
+                              ),
+                            );
+                          },
                           icon: const Icon(
                             Icons.info_sharp,
                             color: AppColors.blue,
@@ -160,12 +308,14 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                             targetWater:
                                 controller.argument.recommendedWater * 1000,
                           ) /
-                          100, // Defaults to 0.5.
+                          100,
+                      // Defaults to 0.5.
                       valueColor: AlwaysStoppedAnimation(
                         AppColors.blue.withOpacity(0.69),
-                      ), // Defaults to the current Theme's accentColor.
-                      backgroundColor: AppColors
-                          .white, // Defaults to the current Theme's backgroundColor.
+                      ),
+                      // Defaults to the current Theme's accentColor.
+                      backgroundColor: AppColors.white,
+                      // Defaults to the current Theme's backgroundColor.
                       borderColor: AppColors.blue,
                       borderWidth: 6.0,
                       direction: Axis.vertical,
@@ -236,11 +386,49 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                             color: AppColors.blue,
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          child: const TextWidget(
-                            text: "custom",
-                            size: AppDimens.textSize15,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.white,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.dialog(
+                                AlertDialog(
+                                  backgroundColor: AppColors.white,
+                                  elevation: 50.0,
+                                  contentPadding: EdgeInsets.zero,
+                                  content: Container(
+                                    height: 310.0,
+                                    width: 500.0,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(16.0),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10.0, left: 10.0),
+                                          child: TextWidget(
+                                            text: "Dung tích",
+                                            size: AppDimens.textSize20,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        buildListOptionWater(),
+                                        buildButtonAddWater()
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: const TextWidget(
+                              text: "custom",
+                              size: AppDimens.textSize15,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.white,
+                            ),
                           ),
                         ),
                         GestureDetector(
