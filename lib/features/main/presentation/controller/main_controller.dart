@@ -52,6 +52,6 @@ class MainController extends GetxController {
   void onChangeItemBottomBar(int index) {
     if (currentIndex.value == index) return;
     currentIndex.value = index;
-    Get.offAllNamed(pages[index], id: 1);
+    Get.offAndToNamed(pages[index], id: 1);
   }
 }

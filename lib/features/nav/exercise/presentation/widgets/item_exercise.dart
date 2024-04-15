@@ -1,5 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/images/image_network_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/models/exercise_model.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +23,8 @@ class ItemExercise extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-                height: 100,
-                width: 150,
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  border: Border.all(width: 1.0, color: AppColors.primary),
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  image: DecorationImage(
-                      image: NetworkImage(item.gifUrl ?? ""),
-                      fit: BoxFit.cover),
-                )),
+            ImageNetWotkSquareWidget(
+                height: 100, width: 150, imageUrl: item.gifUrl ?? ""),
             const SizedBox(
               width: 10.0,
             ),
