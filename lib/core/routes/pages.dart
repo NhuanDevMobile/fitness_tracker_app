@@ -13,8 +13,12 @@ import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_binding.da
 import 'package:fitness_tracker_app/features/nav/exercise/di/exercise_detail_binding.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_detail_page.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/presentation/page/exercise_page.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/di/create_food_binding.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/di/food_binding.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/di/food_cart_binding.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/di/food_detail_binding.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/create_food_page.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/food_cart_page.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/food_detail_page.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/page/food_page.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/di/water_drinking_binding.dart';
@@ -81,6 +85,16 @@ class Pages {
       name: Routes.foodDetail,
       page: () => const FoodDetailPage(),
       binding: FoodDetailBindding(),
+    ),
+    GetPage(
+      name: Routes.createFoodPage,
+      page: () => const CreateFoodPage(),
+      binding: CreateFoodBindding(),
+    ),
+    GetPage(
+      name: Routes.foodCart,
+      page: () => const FoodCartPage(),
+      binding: FoodCartBindding(),
     ),
   ];
 }

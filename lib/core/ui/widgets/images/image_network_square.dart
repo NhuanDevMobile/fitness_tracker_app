@@ -8,11 +8,13 @@ class ImageNetWotkSquareWidget extends StatelessWidget {
   final double width;
   final String imageUrl;
   final double borderRadius;
+  final Color backgroundColor;
   const ImageNetWotkSquareWidget(
       {super.key,
       required this.height,
       required this.width,
       required this.imageUrl,
+      this.backgroundColor = AppColors.white,
       this.borderRadius = 10.0});
 
   @override
@@ -21,7 +23,7 @@ class ImageNetWotkSquareWidget extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: backgroundColor,
         borderRadius: BorderRadius.all(
           Radius.circular(borderRadius),
         ),

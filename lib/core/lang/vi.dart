@@ -68,4 +68,9 @@ const Map<String, String> vi = {
   'suggest': 'Gợi ý',
   'favourite': 'Yêu thích',
   'my_food': 'Của tôi',
+  'bowl': 'Tô',
+  'cup': 'Chén',
+  'add_food': 'Thêm thực phẩm',
+  'no_food':
+      'Hiện tại bạn không có thực phẩm của riêng bạn. Hãy nhấn vào thêm thực phẩm để thêm nhé!',
 };

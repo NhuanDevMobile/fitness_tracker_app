@@ -23,7 +23,10 @@ class FoodDetailPage extends GetView<FoodDetailController> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
-            child: SvgPicture.asset("assets/icons/ic_bookmark.svg"),
+            child: SvgPicture.asset(
+              "assets/icons/ic_bookmark.svg",
+              color: AppColors.white,
+            ),
           )
         ],
       ),
@@ -117,8 +120,7 @@ class FoodDetailPage extends GetView<FoodDetailController> {
           const SizedBox(height: 12.0),
           TextWidget(
             text:
-                "* Giá trị dinh dưỡng có trong ${controller.food.servingQty}  ${controller.food.servingUnit}"
-                    .tr,
+                "* Giá trị dinh dưỡng có trong ${controller.food.servingQty}${"${controller.food.servingUnit}".tr}",
             size: AppDimens.textSize14,
             fontWeight: FontWeight.w400,
             color: AppColors.error,
