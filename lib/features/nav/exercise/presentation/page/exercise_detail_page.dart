@@ -1,6 +1,7 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/images/image_network_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/nav/exercise/presentation/controller/exercise_detail_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,18 +23,10 @@ class ExerciseDetailPage extends GetView<ExerciseDetailController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              controller.exercise.gifUrl ?? "",
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
-                );
-              },
-            ),
+            ImageNetWotkSquareWidget(
+                height: 300,
+                width: double.infinity,
+                imageUrl: controller.exercise.gifUrl ?? ""),
             _buildDescription(),
           ],
         ),

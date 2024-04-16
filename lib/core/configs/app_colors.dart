@@ -21,6 +21,7 @@ class AppColors {
   static Color yellow1 = HexColor('#FFBA00');
   static Color yellow2 = HexColor('#FFD974');
   static Color yellow3 = HexColor('#FFBA00');
+  static Color gray2 = HexColor('#e8e0e3');
   static const gray = Color(0xffE3E8EE);
   static const blue = Color(0xFF5DCCFC);
   static Color getColorBMI(double bmi) {

@@ -30,6 +30,7 @@ class DiaryController extends GetxController {
   }
 
   getWaterDiarys() async {
+    print("Nhuan");
     final result = await FirestoreWater.getWaterByUserIdAndDate(
         userId: user!.uid!, dateTime: "2024-04-12T00:00:00.000");
     if (result.status == Status.success) {

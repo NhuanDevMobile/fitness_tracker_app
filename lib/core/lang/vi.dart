@@ -59,4 +59,18 @@ const Map<String, String> vi = {
   'search_food': 'Tìm kiếm thực phẩm',
   'nutrition_value': "Giá trị dinh dưỡng",
   'nutrition_infor': "Thông tin dinh dưỡng",
+  'energy_and_nutritional_ratio_of_food':
+      "Năng lượng và tỷ lệ dinh dưỡng của thực phẩm",
+  'breakfast': 'Bữa sáng',
+  'lunch': 'Bữa trưa',
+  'dinner': 'Bữa tối',
+  'snack': 'Ăn vặt',
+  'suggest': 'Gợi ý',
+  'favourite': 'Yêu thích',
+  'my_food': 'Của tôi',
+  'bowl': 'Tô',
+  'cup': 'Chén',
+  'add_food': 'Thêm thực phẩm',
+  'no_food':
+      'Hiện tại bạn không có thực phẩm của riêng bạn. Hãy nhấn vào thêm thực phẩm để thêm nhé!',
 };

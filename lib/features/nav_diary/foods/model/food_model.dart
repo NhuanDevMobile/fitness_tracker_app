@@ -3,11 +3,11 @@ class FoodModel {
   dynamic brandName;
   int? servingQty;
   String? servingUnit;
-  int? servingWeightGrams;
+  double? servingWeightGrams;
   double? nfCalories;
   double? nfTotalFat;
   double? nfSaturatedFat;
-  int? nfCholesterol;
+  double? nfCholesterol;
   double? nfSodium;
   double? nfTotalCarbohydrate;
   double? nfDietaryFiber;
@@ -80,11 +80,11 @@ class FoodModel {
         brandName: json["brand_name"],
         servingQty: json["serving_qty"],
         servingUnit: json["serving_unit"],
-        servingWeightGrams: json["serving_weight_grams"],
+        servingWeightGrams: json["serving_weight_grams"]?.toDouble(),
         nfCalories: json["nf_calories"]?.toDouble(),
         nfTotalFat: json["nf_total_fat"]?.toDouble(),
         nfSaturatedFat: json["nf_saturated_fat"]?.toDouble(),
-        nfCholesterol: json["nf_cholesterol"],
+        nfCholesterol: json["nf_cholesterol"]?.toDouble(),
         nfSodium: json["nf_sodium"]?.toDouble(),
         nfTotalCarbohydrate: json["nf_total_carbohydrate"]?.toDouble(),
         nfDietaryFiber: json["nf_dietary_fiber"]?.toDouble(),
