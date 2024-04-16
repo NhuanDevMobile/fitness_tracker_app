@@ -42,60 +42,69 @@ class MainPage extends GetView<MainController> {
   }
 
   _bottomNavigationBar() {
-    return Obx(() => ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12),
+    return Obx(() => Container(
+          decoration: const BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
           ),
-          child: BottomAppBar(
-            child: Container(
-                height: 60.0,
-                width: double.infinity,
-                color: AppColors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ItemBottomBarWidget(
-                      icon: 'assets/icons/ic_diary.svg',
-                      title: 'diary',
-                      index: 0,
-                      currentIndex: controller.currentIndex.value,
-                      onTap: () {
-                        controller.onChangeItemBottomBar(0);
-                      },
-                    ),
-                    ItemBottomBarWidget(
-                      icon: 'assets/icons/ic_exercise.svg',
-                      title: 'exercise',
-                      index: 1,
-                      currentIndex: controller.currentIndex.value,
-                      onTap: () {
-                        controller.onChangeItemBottomBar(1);
-                      },
-                    ),
-                    const SizedBox(
-                      width: 64.0,
-                    ),
-                    ItemBottomBarWidget(
-                      icon: 'assets/icons/ic_diary.svg',
-                      title: 'Trang chủ',
-                      index: 2,
-                      currentIndex: controller.currentIndex.value,
-                      onTap: () {
-                        controller.onChangeItemBottomBar(2);
-                      },
-                    ),
-                    ItemBottomBarWidget(
-                      icon: 'assets/icons/ic_profile.svg',
-                      title: 'profile',
-                      index: 3,
-                      currentIndex: controller.currentIndex.value,
-                      onTap: () {
-                        controller.onChangeItemBottomBar(3);
-                      },
-                    ),
-                  ],
-                )),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            child: BottomAppBar(
+              child: Container(
+                  height: 60.0,
+                  width: double.infinity,
+                  color: AppColors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ItemBottomBarWidget(
+                        icon: 'assets/icons/ic_diary.svg',
+                        title: 'diary',
+                        index: 0,
+                        currentIndex: controller.currentIndex.value,
+                        onTap: () {
+                          controller.onChangeItemBottomBar(0);
+                        },
+                      ),
+                      ItemBottomBarWidget(
+                        icon: 'assets/icons/ic_exercise.svg',
+                        title: 'exercise',
+                        index: 1,
+                        currentIndex: controller.currentIndex.value,
+                        onTap: () {
+                          controller.onChangeItemBottomBar(1);
+                        },
+                      ),
+                      const SizedBox(
+                        width: 64.0,
+                      ),
+                      ItemBottomBarWidget(
+                        icon: 'assets/icons/ic_diary.svg',
+                        title: 'Trang chủ',
+                        index: 2,
+                        currentIndex: controller.currentIndex.value,
+                        onTap: () {
+                          controller.onChangeItemBottomBar(2);
+                        },
+                      ),
+                      ItemBottomBarWidget(
+                        icon: 'assets/icons/ic_profile.svg',
+                        title: 'profile',
+                        index: 3,
+                        currentIndex: controller.currentIndex.value,
+                        onTap: () {
+                          controller.onChangeItemBottomBar(3);
+                        },
+                      ),
+                    ],
+                  )),
+            ),
           ),
         ));
   }
