@@ -2,6 +2,8 @@ import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/button/progress_bar.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/images/image_provider_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/textfield/custom_textfield_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/create_food_controller.dart';
@@ -21,17 +23,31 @@ class CreateFoodPage extends GetView<CreateFoodController> {
       body: bodyContent(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
-        child: ButtonWidget(
-          text: "Lưu",
-          ontap: () {
-            if (controller.formKey.currentState!.validate()) {
-              // TODO submit
-            }
-            // controller.saveTimeSchedule();
-          },
-          height: 35.0,
-          backgroundColor: AppColors.primary,
-        ),
+        child: Obx(() {
+          return !controller.isLoading.value
+              ? ButtonWidget(
+                  text: "Lưu",
+                  ontap: () {
+                    if (controller.formKey.currentState!.validate()) {
+                      controller.createFood();
+                    }
+                    // controller.saveTimeSchedule();
+                  },
+                  height: 35.0,
+                  backgroundColor: AppColors.primary,
+                )
+              : ButtonWidget(
+                  text: "",
+                  ontap: () {
+                    // controller.saveTimeSchedule();
+                  },
+                  height: 35.0,
+                  backgroundColor: AppColors.primary,
+                  child: const Center(
+                    child: ProgressBar(),
+                  ),
+                );
+        }),
       ),
     );
   }
@@ -110,6 +126,7 @@ class CreateFoodPage extends GetView<CreateFoodController> {
             const SizedBox(height: 15.0),
             Obx(() {
               return ExpansionPanelList(
+                elevation: 0,
                 expansionCallback: (panelIndex, expanded) {
                   controller.isCollapse.value = !controller.isCollapse.value;
                 },
@@ -244,18 +261,32 @@ class CreateFoodPage extends GetView<CreateFoodController> {
       padding: const EdgeInsets.only(bottom: 25.0, top: 15.0),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              height: 60.0,
-              width: 60.0,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  color: AppColors.gray2),
-              child: const Center(
-                child: Icon(Icons.image_outlined),
-              ),
-            ),
+          GetBuilder<CreateFoodController>(
+            id: "uploadFile",
+            builder: (logic) {
+              return GestureDetector(
+                onTap: () {
+                  controller.uploadImageFood();
+                },
+                child: controller.imageFood != null
+                    ? ImageProviderSquareWidget(
+                        height: 60.0,
+                        imageUrl: controller.imageFood!,
+                        width: 60.0,
+                        borderRadius: 8.0,
+                      )
+                    : Container(
+                        height: 60.0,
+                        width: 60.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: AppColors.gray2),
+                        child: const Center(
+                          child: Icon(Icons.image_outlined),
+                        ),
+                      ),
+              );
+            },
           ),
           const SizedBox(width: 15.0),
           const Column(

@@ -66,82 +66,85 @@ class CustomTextFieldWidget extends StatefulWidget {
 
 class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
   bool isError = false;
+  bool isFormFieldValid = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: widget.height,
-          child: TextFormField(
-            enabled: widget.enable,
-            maxLength: widget.maxLength,
-            keyboardType: widget.keyboardType,
-            controller: widget.controller,
-            onChanged: (String valueOnChanged) {
-              if (widget.onChanged != null) widget.onChanged!(valueOnChanged);
-              if (isError && valueOnChanged.isNotEmpty) {
-                setState(() {
-                  isError = false;
-                });
-              }
-            },
-            onFieldSubmitted: (String value) {
-              if (widget.onCompleted != null) widget.onCompleted!(value);
-            },
-            inputFormatters: widget.inputFormatters,
-            obscureText: widget.obscureText,
-            focusNode: widget.focusNode,
-            validator: (text) {
-              if (text!.isEmpty) {
-                isError = true;
-              } else {
-                isError = false;
-                widget.errorText = "";
-              }
-              setState(() {});
-            },
-            style: TextStyle(
-                fontSize: AppDimens.textSize16,
-                color: widget.textColor ?? AppColors.black),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                    width: widget.enableWidth!, color: widget.enableColor!),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              contentPadding: const EdgeInsets.only(left: 15.0),
-              labelText: widget.labelText,
-              labelStyle: const TextStyle(
-                  color: AppColors.primary, fontSize: AppDimens.textSize16),
-              suffixIcon: widget.suffixIcon,
-              prefixIcon: widget.prefixIcon,
-              filled: widget.backgroundColor == null ? false : true,
-              fillColor: widget.backgroundColor,
-              hintText: widget.hintText,
-              hintStyle: TextStyle(
-                  fontSize: AppDimens.textSize16, color: widget.hintColor),
-              enabledBorder: widget.isShowBorder
-                  ? OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: widget.enableWidth!,
-                          color: widget.enableColor!),
-                      borderRadius: BorderRadius.circular(widget.borderRadius),
-                    )
-                  : null,
-              focusedBorder: widget.isShowBorder
-                  ? OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: widget.focusedWidth!,
-                          color: widget.focusedColor!),
-                      borderRadius: BorderRadius.circular(widget.borderRadius),
-                    )
-                  : null,
-              // errorBorder: OutlineInputBorder(
-              //   borderSide: BorderSide(
-              //       width: widget.focusedWidth!, color: AppColors.error),
-              //   borderRadius: BorderRadius.circular(widget.borderRadius),
-              // ),
+        TextFormField(
+          enabled: widget.enable,
+          maxLength: widget.maxLength,
+          keyboardType: widget.keyboardType,
+          controller: widget.controller,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onChanged: (String valueOnChanged) {
+            if (widget.onChanged != null) widget.onChanged!(valueOnChanged);
+            // if (isFormFieldValid && valueOnChanged.isNotEmpty) {
+            //   setState(() {
+            //     isFormFieldValid = false;
+            //   });
+            // }
+          },
+          onFieldSubmitted: (String value) {
+            if (widget.onCompleted != null) widget.onCompleted!(value);
+          },
+          inputFormatters: widget.inputFormatters,
+          obscureText: widget.obscureText,
+          focusNode: widget.focusNode,
+          validator: (text) {
+            if (text!.isEmpty) {
+              // isFormFieldValid = false; // Form field không hợp lệ
+              return widget.errorText;
+            } else {
+              // isFormFieldValid = true; // Form field hợp lệ
+              return null;
+            }
+          },
+          style: TextStyle(
+              fontSize: AppDimens.textSize16,
+              color: widget.textColor ?? AppColors.black),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                  width: widget.enableWidth!, color: widget.enableColor!),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            contentPadding: const EdgeInsets.only(left: 15.0),
+            labelText: widget.labelText,
+            labelStyle: const TextStyle(
+                color: AppColors.primary, fontSize: AppDimens.textSize16),
+            suffixIcon: widget.suffixIcon,
+            prefixIcon: widget.prefixIcon,
+            filled: widget.backgroundColor == null ? false : true,
+            fillColor: widget.backgroundColor,
+            hintText: widget.hintText,
+            hintStyle: TextStyle(
+                fontSize: AppDimens.textSize16, color: widget.hintColor),
+            enabledBorder: widget.isShowBorder
+                ? OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: widget.enableWidth!, color: widget.enableColor!),
+                    borderRadius: BorderRadius.circular(widget.borderRadius),
+                  )
+                : null,
+            focusedBorder: widget.isShowBorder
+                ? OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: widget.focusedWidth!,
+                        color: widget.focusedColor!),
+                    borderRadius: BorderRadius.circular(widget.borderRadius),
+                  )
+                : null,
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  width: widget.focusedWidth!, color: widget.focusedColor!),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  width: widget.focusedWidth!, color: widget.focusedColor!),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
           ),
         ),

@@ -1,15 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:io';
+
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ImageNetWotkSquareWidget extends StatelessWidget {
+class ImageProviderSquareWidget extends StatelessWidget {
   final double height;
   final double width;
-  final String imageUrl;
+  final File imageUrl;
   final double borderRadius;
   final Color backgroundColor;
-  const ImageNetWotkSquareWidget(
+  const ImageProviderSquareWidget(
       {super.key,
       required this.height,
       required this.width,
@@ -28,16 +29,11 @@ class ImageNetWotkSquareWidget extends StatelessWidget {
           Radius.circular(borderRadius),
         ),
       ),
-      child: Uri.parse(imageUrl).isAbsolute
-          ? CachedNetworkImage(
-              imageUrl: imageUrl,
-              placeholder: (context, url) => _buildLoading(),
-              errorWidget: (context, url, error) {
-                return const Icon(Icons.error);
-              },
-              errorListener: null,
-            )
-          : const Icon(Icons.error),
+      child: Image.file(
+        imageUrl,
+        errorBuilder: (context, url, error) => const Icon(Icons.error),
+        fit: BoxFit.cover,
+      ),
     );
   }
 

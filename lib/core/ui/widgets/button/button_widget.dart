@@ -15,7 +15,7 @@ class ButtonWidget extends StatelessWidget {
   late Color? borderColor;
   final SvgPicture? leadingIcon;
   final double? borderRadius;
-
+  final Widget? child;
   ButtonWidget({
     Key? key,
     this.fontWeight = FontWeight.w600,
@@ -28,6 +28,7 @@ class ButtonWidget extends StatelessWidget {
     this.textColor = AppColors.white,
     this.backgroundColor = AppColors.primary,
     this.leadingIcon,
+    this.child,
     this.borderRadius = 15.0,
   }) : super(key: key);
 
@@ -55,12 +56,13 @@ class ButtonWidget extends StatelessWidget {
             children: [
               if (leadingIcon != null) leadingIcon!,
               if (leadingIcon != null) const SizedBox(width: 10.0),
-              TextWidget(
-                text: text,
-                fontWeight: fontWeight,
-                textAlign: TextAlign.center,
-                color: textColor,
-              ),
+              child ??
+                  TextWidget(
+                    text: text,
+                    fontWeight: fontWeight,
+                    textAlign: TextAlign.center,
+                    color: textColor,
+                  ),
             ],
           ),
         ),
