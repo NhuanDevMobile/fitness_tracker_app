@@ -60,4 +60,7 @@ class UserFoodModel {
         "nfSodium": nfSodium,
         "nfCanxi": nfCanxi,
       };
+  String descriptionFood() {
+    return '$servingQty $servingUnit, ${nfCalories!.toStringAsFixed(1)} Kcal';
+  }
 }

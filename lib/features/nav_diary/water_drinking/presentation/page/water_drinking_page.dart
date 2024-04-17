@@ -1,5 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
+import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/text_input/simple_input_textfield.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
@@ -25,6 +26,47 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
         callbackLeading: () {
           controller.onTapBack();
         },
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.scheduleWater);
+            },
+            child: SizedBox(
+              height: 50.0,
+              width: 50.0,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: 35.0,
+                    width: 35.0,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.white),
+                  ),
+                  Positioned(
+                    top:
+                        1.0, // Điều chỉnh vị trí theo y để container màu đỏ nằm ở trên mép container màu trắng
+                    right:
+                        10.0, // Điều chỉnh vị trí theo x để container màu đỏ nằm ở góc trên bên phải của container màu trắng
+                    child: Container(
+                      height: 10.0,
+                      width: 10.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    "assets/icons/ic_noti.svg",
+                    height: 20.0,
+                    width: 20.0,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -166,41 +208,41 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextWidget(
+        const TextWidget(
           text: "Khuyến nghị",
           fontWeight: FontWeight.bold,
           size: AppDimens.textSize16,
         ),
         const SizedBox(height: 5.0),
         RichText(
-          text: TextSpan(
+          text: const TextSpan(
               text:
                   "Mục tiêu hằng ngày mà chúng tôi khuyến nghị dựa trên giới tính và cân nặng của bạn là ",
               style: TextStyle(
-                  fontSize: AppDimens.textSize16, color: AppColors.black),
+                  fontSize: AppDimens.textSize15, color: AppColors.black),
               children: [
                 TextSpan(
                   text: '2253 ml',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: AppDimens.textSize16,
-                      color: AppColors.colorPink),
+                      fontSize: AppDimens.textSize15,
+                      color: AppColors.primary),
                 ),
               ]),
         ),
         const SizedBox(height: 8.0),
-        TextWidget(
+        const TextWidget(
           text: "Nước và tập luyện",
           fontWeight: FontWeight.bold,
           size: AppDimens.textSize16,
         ),
         const SizedBox(height: 5.0),
         RichText(
-          text: TextSpan(
+          text: const TextSpan(
             text:
                 "Nếu bạn đang tập luyện cơ thể sẽ mất nhiều nước. Hãy nhớ uống thêm nước sau khi tập luyện",
             style: TextStyle(
-                fontSize: AppDimens.textSize16, color: AppColors.black),
+                fontSize: AppDimens.textSize15, color: AppColors.black),
           ),
         ),
       ],
@@ -214,11 +256,10 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
         Padding(
           padding: const EdgeInsets.only(top: 15.0, left: 5.0),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {
-                  controller.addWaterOption();
-                },
+                onTap: () {},
                 child: const Icon(
                   IconData(0x2615, fontFamily: 'MaterialIcons'),
                   size: 30.0,
@@ -227,7 +268,7 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
               ),
               const SizedBox(width: 10.0),
               SizedBox(
-                width: 250.0,
+                width: 220.0,
                 child: SimpleInputTextField(
                   obscureText: false,
                   height: 40.0,
@@ -236,6 +277,17 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                   controller: controller.addWaterOptionController,
                   keyboardType: TextInputType.number,
                 ),
+              ),
+              const SizedBox(width: 10.0),
+              GestureDetector(
+                child: SvgPicture.asset(
+                  "assets/icons/ic_send.svg",
+                  height: 30.0,
+                  width: 30.0,
+                ),
+                onTap: () {
+                  controller.addWaterOption();
+                },
               )
             ],
           ),
@@ -281,13 +333,47 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                                 content: Container(
                                   height: 310.0,
                                   width: 500.0,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0, vertical: 20.0),
                                   decoration: const BoxDecoration(
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.all(
-                                      Radius.circular(16.0),
+                                      Radius.circular(20.0),
                                     ),
                                   ),
-                                  child: buildContent(),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/ic_water_cup.svg",
+                                        height: 50.0,
+                                        width: 50.0,
+                                      ),
+                                      buildContent(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 15.0, right: 10.0),
+                                            child: GestureDetector(
+                                              child: const TextWidget(
+                                                text: "OK",
+                                                color: AppColors.primary,
+                                                fontWeight: FontWeight.bold,
+                                                size: AppDimens.textSize15,
+                                              ),
+                                              onTap: () {
+                                                Get.back();
+                                              },
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -406,13 +492,31 @@ class WaterDrinkingPage extends GetView<WaterDrinkingController> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10.0, left: 10.0),
-                                          child: TextWidget(
-                                            text: "Dung tích",
-                                            size: AppDimens.textSize20,
-                                            fontWeight: FontWeight.w500,
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 10.0,
+                                              left: 10.0,
+                                              right: 10.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const TextWidget(
+                                                text: "Dung tích",
+                                                size: AppDimens.textSize20,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  controller
+                                                      .addWaterOptionController
+                                                      .clear();
+                                                  Get.back();
+                                                },
+                                                child: const Icon(
+                                                    Icons.close_outlined),
+                                              )
+                                            ],
                                           ),
                                         ),
                                         buildListOptionWater(),
