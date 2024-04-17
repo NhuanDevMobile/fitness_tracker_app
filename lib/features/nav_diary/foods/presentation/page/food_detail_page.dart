@@ -20,19 +20,26 @@ class FoodDetailPage extends GetView<FoodDetailController> {
       appBar: AppBarWidget(
         centerTitle: true,
         title: controller.food.foodName ?? "",
+        callbackLeading: () {
+          Get.back(result: controller.savedFoods);
+        },
         actions: [
-          GestureDetector(
-            onTap: () {
-              controller.saveFood();
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: SvgPicture.asset(
-                "assets/icons/ic_bookmark.svg",
-                color: AppColors.white,
-              ),
-            ),
-          )
+          Obx(() => GestureDetector(
+                onTap: () {
+                  controller.isBookMarked.value
+                      ? controller.deledSavedFood()
+                      : controller.saveFood();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: SvgPicture.asset(
+                    controller.isBookMarked.value
+                        ? "assets/icons/ic_bookmarked.svg"
+                        : "assets/icons/ic_bookmark.svg",
+                    color: AppColors.white,
+                  ),
+                ),
+              ))
         ],
       ),
       body: SingleChildScrollView(

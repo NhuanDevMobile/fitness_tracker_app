@@ -67,6 +67,7 @@ const Map<String, String> vi = {
   'snack': 'Ăn vặt',
   'suggest': 'Gợi ý',
   'favourite': 'Yêu thích',
+  'saved': 'Đã lưu',
   'my_food': 'Của tôi',
   'bowl': 'Tô',
   'cup': 'Chén',
@@ -75,4 +76,6 @@ const Map<String, String> vi = {
       'Hiện tại bạn không có thực phẩm của riêng bạn. Hãy nhấn vào thêm thực phẩm để thêm nhé!',
   'saved_food_success': 'Đã lưu thực phẩm',
   'save_food_error': 'Lưu thất bại',
+  'delete_saved_food_success': 'Xóa thực phẩm đã lưu thành công',
+  'delete_saved_food_error': 'Xóa thất bại',
 };

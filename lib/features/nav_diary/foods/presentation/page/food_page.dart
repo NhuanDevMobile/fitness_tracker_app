@@ -5,6 +5,7 @@ import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/textfield/textfield_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/food_controller.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/food_saved_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/food_suggest_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/item_header_food.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/my_food_widget.dart';
@@ -125,7 +126,7 @@ class FoodPage extends GetView<FoodController> {
                 ),
                 const SizedBox(width: 10.0),
                 ItemHeaderFood(
-                  title: "favourite",
+                  title: "saved",
                   isSeleted: controller.currentPage.value == 2,
                   onTap: () {
                     controller.currentPage.value = 2;
@@ -144,6 +145,6 @@ class FoodPage extends GetView<FoodController> {
         ? const FoodSuggestWidget()
         : controller.currentPage.value == 1
             ? const MyFoodWidget()
-            : Container());
+            : const FoodSavedWidget());
   }
 }
