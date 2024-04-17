@@ -21,11 +21,16 @@ class FoodDetailPage extends GetView<FoodDetailController> {
         centerTitle: true,
         title: controller.food.foodName ?? "",
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: SvgPicture.asset(
-              "assets/icons/ic_bookmark.svg",
-              color: AppColors.white,
+          GestureDetector(
+            onTap: () {
+              controller.saveFood();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: SvgPicture.asset(
+                "assets/icons/ic_bookmark.svg",
+                color: AppColors.white,
+              ),
             ),
           )
         ],

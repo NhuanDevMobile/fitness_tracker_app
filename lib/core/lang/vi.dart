@@ -73,4 +73,6 @@ const Map<String, String> vi = {
   'add_food': 'Thêm thực phẩm',
   'no_food':
       'Hiện tại bạn không có thực phẩm của riêng bạn. Hãy nhấn vào thêm thực phẩm để thêm nhé!',
+  'saved_food_success': 'Đã lưu thực phẩm',
+  'save_food_error': 'Lưu thất bại',
 };
