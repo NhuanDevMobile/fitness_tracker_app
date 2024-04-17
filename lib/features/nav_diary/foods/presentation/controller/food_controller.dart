@@ -1,11 +1,14 @@
 import 'package:fitness_tracker_app/core/configs/enum.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_food.dart';
+import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_saved_food.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_food.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_relationship_food.dart';
+import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/snackbar/snackbar.dart';
 import 'package:fitness_tracker_app/features/auth/user/domain/use_case/get_user_use_case.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/food_argument.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/food_model.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/model/saved_food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
 import 'package:get/get.dart';
@@ -15,6 +18,7 @@ class FoodController extends GetxController {
   final FoodArgument argument = Get.arguments;
   List<FoodModel> foods = [];
   List<UserFoodModel> myFoods = [];
+  List<SavedFoodModel> savedFoods = [];
   RxInt currentPage = 0.obs;
   GetuserUseCase getuserUseCase = Get.find();
   int mealId = 0;
@@ -24,9 +28,9 @@ class FoodController extends GetxController {
     await getuserUseCase.getUser().then((value) {
       userId = value!.uid ?? "";
       getMyFoods(userId: value!.uid ?? "");
+      getSavedFoods(userId: value.uid ?? "");
     });
     getFoods();
-
     super.onInit();
   }
 
@@ -44,6 +48,16 @@ class FoodController extends GetxController {
     final result = await FirestoreUserFood.getListUserFood(userId);
     if (result.status == Status.success) {
       myFoods = result.data!;
+      update(["fetchFoods"]);
+    } else {
+      SnackbarUtil.show(result.exp!.message ?? "something_went_wrong");
+    }
+  }
+
+  void getSavedFoods({required String userId}) async {
+    final result = await FirestoreSavedFood.getListFoodByUserId(userId);
+    if (result.status == Status.success) {
+      savedFoods = result.data!;
       update(["fetchFoods"]);
     } else {
       SnackbarUtil.show(result.exp!.message ?? "something_went_wrong");
@@ -94,6 +108,17 @@ class FoodController extends GetxController {
       return 4;
     } else {
       return 1;
+    }
+  }
+
+  onTapDetailFood(FoodModel food) async {
+    final callBack = await Get.toNamed(
+      Routes.foodDetail,
+      arguments: [food, savedFoods],
+    );
+    if (callBack != null) {
+      savedFoods = callBack;
+      update(["fetchFoods"]);
     }
   }
 }
