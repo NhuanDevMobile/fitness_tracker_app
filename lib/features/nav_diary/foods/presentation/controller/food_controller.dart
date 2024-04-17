@@ -19,6 +19,7 @@ class FoodController extends GetxController {
   List<FoodModel> foods = [];
   List<UserFoodModel> myFoods = [];
   List<SavedFoodModel> savedFoods = [];
+  List<UserRelationshipFoodModel> listFoodRelationship = [];
   RxInt currentPage = 0.obs;
   GetuserUseCase getuserUseCase = Get.find();
   int mealId = 0;
@@ -31,7 +32,13 @@ class FoodController extends GetxController {
       getSavedFoods(userId: value.uid ?? "");
     });
     getFoods();
+    setFood();
     super.onInit();
+  }
+
+  void setFood() {
+    listFoodRelationship = argument.listFoodRelationship;
+    update(['listFoodRelationship']);
   }
 
   void getFoods() async {
@@ -78,6 +85,8 @@ class FoodController extends GetxController {
         userRelationshipFoodModel: userRelationFood, userId: userId);
 
     if (result.status == Status.success) {
+      listFoodRelationship.insert(0, userRelationFood);
+      update(["listFoodRelationship"]);
     } else {
       SnackbarUtil.show(result.exp!.message ?? "something_went_wrong");
     }
