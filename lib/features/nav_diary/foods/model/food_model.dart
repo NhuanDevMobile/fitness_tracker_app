@@ -170,6 +170,10 @@ class FoodModel {
   String descriptionFood() {
     return '$servingQty $servingUnit, ${servingWeightGrams}g, ${nfCalories!.toStringAsFixed(1)} Kcal';
   }
+
+  double getCalories() {
+    return nfCalories ?? 0;
+  }
 }
 
 class AltMeasure {
@@ -191,6 +195,9 @@ class AltMeasure {
         seq: json["seq"],
         qty: json["qty"],
       );
+  int getQlt() {
+    return qty ?? 0;
+  }
 
   Map<String, dynamic> toJson() => {
         "serving_weight": servingWeight,

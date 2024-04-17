@@ -1,5 +1,7 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_relationship_food.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/food_controller.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/item_add_to_cart_controller.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/item_add_food_to_cart.dart';
@@ -30,14 +32,19 @@ class FoodSuggestWidget extends GetWidget<FoodController> {
                         arguments: controller.foods[index],
                       );
                     },
-                    onTapAdd: () {
-                      Get.bottomSheet(
+                    onTapAdd: () async {
+                      final result = await Get.bottomSheet(
                           GetBuilder<ItemAddFoodToCartController>(
                             init: ItemAddFoodToCartController(),
                             builder: (ItemAddFoodToCartController
                                 itemAddFoodToCartController) {
                               return ItemAddFoodToCart(
-                                onTapAdd: () {},
+                                onTapAdd: () {
+                                  FirestoreUserRelationshipFood.create(
+                                      userRelationshipFoodModel:
+                                          UserRelationshipFoodModel(),
+                                      userId: "userId");
+                                },
                                 controller: itemAddFoodToCartController,
                               );
                             },
@@ -51,6 +58,11 @@ class FoodSuggestWidget extends GetWidget<FoodController> {
                           ),
                           settings: RouteSettings(
                               arguments: controller.foods[index]));
+                      if (result != null &&
+                          result is UserRelationshipFoodModel) {
+                        controller.addFoodRelationship(
+                            userRelationFood: result);
+                      }
                     },
                   );
                 },

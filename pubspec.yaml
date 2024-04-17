@@ -52,9 +52,9 @@ dependencies:
   firebase_auth: ^4.16.0
   shimmer: ^3.0.0
   firebase_storage: ^11.6.0
-  permission_handler: ^11.3.1
   image_picker: ^1.0.8
   dropdown_button2: ^2.3.9
+  permission_handler: ^11.0.1
 
 dev_dependencies:
   flutter_test:
