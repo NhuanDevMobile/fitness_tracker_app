@@ -51,5 +51,9 @@
     <true/>
     <key>UIApplicationSupportsIndirectInputEvents</key>
     <true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+	  <string>Fitness Tracker use to upload image for the food</string>
+    <key>NSCameraUsageDescription</key>
+	  <string>Fitness Tracker use to take the photo for the food</string>
   </dict>
 </plist>
