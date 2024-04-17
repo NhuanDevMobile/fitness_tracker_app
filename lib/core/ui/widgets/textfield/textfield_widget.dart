@@ -87,7 +87,7 @@ class TextFieldWidget extends StatelessWidget {
               fontSize: AppDimens.textSize16,
               color: hintColor ?? AppColors.primary),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(width: 1, color: AppColors.primary),
             borderRadius: BorderRadius.circular(borderRadius!),
           ),
           focusedBorder: OutlineInputBorder(
