@@ -1,6 +1,7 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/food_controller.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/item_add_to_cart_controller.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/item_add_food_to_cart.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/item_food.dart';
 import 'package:flutter/material.dart';
@@ -31,17 +32,25 @@ class FoodSuggestWidget extends GetWidget<FoodController> {
                     },
                     onTapAdd: () {
                       Get.bottomSheet(
-                        ItemAddFoodToCart(
-                          onTapAdd: () {},
-                        ),
-                        backgroundColor: AppColors.transparent,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20.0),
-                            topRight: Radius.circular(20.0),
+                          GetBuilder<ItemAddFoodToCartController>(
+                            init: ItemAddFoodToCartController(),
+                            builder: (ItemAddFoodToCartController
+                                itemAddFoodToCartController) {
+                              return ItemAddFoodToCart(
+                                onTapAdd: () {},
+                                controller: itemAddFoodToCartController,
+                              );
+                            },
                           ),
-                        ),
-                      );
+                          backgroundColor: AppColors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
+                          ),
+                          settings: RouteSettings(
+                              arguments: controller.foods[index]));
                     },
                   );
                 },
