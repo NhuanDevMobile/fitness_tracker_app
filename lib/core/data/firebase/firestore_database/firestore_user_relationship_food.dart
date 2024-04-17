@@ -9,7 +9,6 @@ class FirestoreUserRelationshipFood {
   static Future<Result<UserRelationshipFoodModel>> create(
       {required UserRelationshipFoodModel userRelationshipFoodModel,
       required String userId}) async {
-    print("asdadad");
     try {
       String foodId = _fireStoreUserRelationshipFoodCollection.doc().id;
       userRelationshipFoodModel.id = foodId;
@@ -18,6 +17,29 @@ class FirestoreUserRelationshipFood {
           .doc(foodId)
           .set(userRelationshipFoodModel.toJson());
       return Result.success(userRelationshipFoodModel);
+    } on FirebaseException catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  static Future<Result<List<UserRelationshipFoodModel>>> getFoodByDate({
+    required String userId,
+    required String date,
+    required String mealId,
+  }) async {
+    try {
+      QuerySnapshot querySnapshot =
+          await _fireStoreUserRelationshipFoodCollection
+              .where('createAt', isEqualTo: userId)
+              .where('date', isEqualTo: date)
+              .where('mealId', isEqualTo: mealId)
+              .get();
+
+      List<UserRelationshipFoodModel> foodList = querySnapshot.docs
+          .map((doc) => UserRelationshipFoodModel.fromJson(
+              doc.data() as Map<String, dynamic>))
+          .toList();
+      return Result.success(foodList);
     } on FirebaseException catch (e) {
       return Result.error(e);
     }

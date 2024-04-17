@@ -16,6 +16,7 @@ class CreateFoodPage extends GetView<CreateFoodController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: const AppBarWidget(
         title: "add_food",
         centerTitle: true,
@@ -31,16 +32,13 @@ class CreateFoodPage extends GetView<CreateFoodController> {
                     if (controller.formKey.currentState!.validate()) {
                       controller.createFood();
                     }
-                    // controller.saveTimeSchedule();
                   },
                   height: 35.0,
                   backgroundColor: AppColors.primary,
                 )
               : ButtonWidget(
                   text: "",
-                  ontap: () {
-                    // controller.saveTimeSchedule();
-                  },
+                  ontap: () {},
                   height: 35.0,
                   backgroundColor: AppColors.primary,
                   child: const Center(
@@ -132,17 +130,19 @@ class CreateFoodPage extends GetView<CreateFoodController> {
                 },
                 children: [
                   ExpansionPanel(
+                      backgroundColor: AppColors.transparent,
                       headerBuilder: (context, isExpanded) {
                         return const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextWidget(
                               text: "Thông tin dinh dưỡng",
-                              size: AppDimens.textSize15,
+                              size: AppDimens.textSize16,
+                              fontWeight: FontWeight.bold,
                             ),
                             TextWidget(
                               text: "Tùy chọn",
-                              size: AppDimens.textSize14,
+                              size: AppDimens.textSize16,
                             ),
                           ],
                         );
