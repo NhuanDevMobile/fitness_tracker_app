@@ -1,11 +1,9 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/enum.dart';
-import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/utils/date_time.dart';
-import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/food_argument.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
@@ -19,58 +17,60 @@ class DiaryPage extends GetView<DiaryController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(
-        backgroundColor: AppColors.primary,
-        title: DatetimeUtil.formatDateTimeFormat(controller.dateTime),
-        centerTitle: true,
-        titleColor: AppColors.white,
-        leading: GestureDetector(
-          onTap: () async {
-            final result = await Get.bottomSheet(
-              CustomCalendar(
-                selectedDay: controller.dateTime,
-              ),
-              isScrollControlled: true,
-              isDismissible: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16.0),
-                ),
-              ),
-            );
-            if (result != null) {
-              controller.dateTime = result;
-              // controller.update(['updateTitle']);
-            }
-          },
-          child: SvgPicture.asset('assets/icons/ic_calendar.svg'),
-        ),
-      ),
-      body: SingleChildScrollView(
-          child: GetBuilder<DiaryController>(
-        id: "fetchDiary",
-        builder: (_) => controller.user == null
-            ? const SizedBox.shrink()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ItemResultDiary(
-                    kCal: controller.user!.getKcal(),
+    return GetBuilder<DiaryController>(
+      id: "fetchDate",
+      builder: (logic) {
+        return Scaffold(
+          appBar: AppBarWidget(
+            backgroundColor: AppColors.primary,
+            title: DatetimeUtil.formatDateTimeFormat(controller.dateTime),
+            centerTitle: true,
+            titleColor: AppColors.white,
+            leading: GestureDetector(
+              onTap: () async {
+                final result = await Get.bottomSheet(
+                  CustomCalendar(
+                    selectedDay: controller.dateTime,
                   ),
-                  ItemWaterWidget(
-                    value: 0.5,
-                    recommendedValue: controller.user!.getWater(),
-                    onTap: () {
-                      controller.onTapWater();
-                    },
-                    consumedWater: controller.consumedWater,
+                  isScrollControlled: true,
+                  isDismissible: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16.0),
+                    ),
                   ),
-                  _buildDailyMeal(),
-                  _buildExercise(),
-                ],
-              ),
-      )),
+                );
+                if (result != null) {
+                  controller.selectDate(result);
+                }
+              },
+              child: SvgPicture.asset('assets/icons/ic_calendar.svg'),
+            ),
+          ),
+          body: SingleChildScrollView(
+              child: GetBuilder<DiaryController>(
+            id: "fetchDiary",
+            builder: (_) => controller.user == null
+                ? const SizedBox.shrink()
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ItemResultDiary(),
+                      ItemWaterWidget(
+                        value: 0.5,
+                        recommendedValue: controller.user!.getWater(),
+                        onTap: () {
+                          controller.onTapWater();
+                        },
+                        consumedWater: controller.consumedWater,
+                      ),
+                      _buildDailyMeal(),
+                      _buildExercise(),
+                    ],
+                  ),
+          )),
+        );
+      },
     );
   }
 
@@ -94,17 +94,11 @@ class DiaryPage extends GetView<DiaryController> {
                 title: 'Breakfast',
                 kCal: controller.user!
                     .getDailyMeal(dailyMeals: DailyMeals.breakfast),
-                consumeKcal: 0,
+                consumeKcal: controller.getCalories(controller.breakfasts),
                 onTap: () async {
-                  final result = await Get.toNamed(
-                    Routes.foods,
-                    arguments: FoodArgument(
-                        listFood: [],
-                        typeDailyMeal: DailyMeals.breakfast,
-                        dateTime: controller.dateTime,
-                        listFoodRelationship: controller.breakfasts),
-                  );
-                  controller.update(['fetchRelationshipFood']);
+                  controller.gotoPage(
+                      meals: DailyMeals.breakfast,
+                      foodRelationship: controller.breakfasts);
                 },
                 relationshipFoods: controller.breakfasts,
               ),
@@ -114,17 +108,11 @@ class DiaryPage extends GetView<DiaryController> {
                 title: 'Lunch',
                 kCal:
                     controller.user!.getDailyMeal(dailyMeals: DailyMeals.lunch),
-                consumeKcal: 0,
+                consumeKcal: controller.getCalories(controller.lunchs),
                 onTap: () async {
-                  final result = await Get.toNamed(
-                    Routes.foods,
-                    arguments: FoodArgument(
-                        listFood: [],
-                        typeDailyMeal: DailyMeals.lunch,
-                        dateTime: controller.dateTime,
-                        listFoodRelationship: controller.lunchs),
-                  );
-                  controller.update(['fetchRelationshipFood']);
+                  controller.gotoPage(
+                      meals: DailyMeals.lunch,
+                      foodRelationship: controller.lunchs);
                 },
                 relationshipFoods: controller.lunchs,
               ),
@@ -134,17 +122,11 @@ class DiaryPage extends GetView<DiaryController> {
                 title: 'Dinner',
                 kCal: controller.user!
                     .getDailyMeal(dailyMeals: DailyMeals.dinner),
-                consumeKcal: 0,
+                consumeKcal: controller.getCalories(controller.dinners),
                 onTap: () async {
-                  final result = await Get.toNamed(
-                    Routes.foods,
-                    arguments: FoodArgument(
-                        listFood: [],
-                        typeDailyMeal: DailyMeals.dinner,
-                        dateTime: controller.dateTime,
-                        listFoodRelationship: controller.dinners),
-                  );
-                  controller.update(['fetchRelationshipFood']);
+                  controller.gotoPage(
+                      meals: DailyMeals.dinner,
+                      foodRelationship: controller.dinners);
                 },
                 relationshipFoods: controller.dinners,
               ),
@@ -154,17 +136,11 @@ class DiaryPage extends GetView<DiaryController> {
                 title: 'Snack',
                 kCal:
                     controller.user!.getDailyMeal(dailyMeals: DailyMeals.snack),
-                consumeKcal: 0,
+                consumeKcal: controller.getCalories(controller.snacks),
                 onTap: () async {
-                  final result = await Get.toNamed(
-                    Routes.foods,
-                    arguments: FoodArgument(
-                        listFood: [],
-                        typeDailyMeal: DailyMeals.snack,
-                        dateTime: controller.dateTime,
-                        listFoodRelationship: controller.snacks),
-                  );
-                  controller.update(['fetchRelationshipFood']);
+                  controller.gotoPage(
+                      meals: DailyMeals.snack,
+                      foodRelationship: controller.snacks);
                 },
                 relationshipFoods: controller.snacks,
               ),

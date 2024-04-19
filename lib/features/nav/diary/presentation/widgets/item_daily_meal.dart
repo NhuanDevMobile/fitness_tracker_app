@@ -64,7 +64,7 @@ class ItemDailyMeal extends StatelessWidget {
                           ),
                           const SizedBox(width: 4.0),
                           TextWidget(
-                            text: "$kCal Kcal",
+                            text: "${consumeKcal.toStringAsFixed(2)} Kcal",
                             color: AppColors.black,
                             fontWeight: FontWeight.w600,
                           ),

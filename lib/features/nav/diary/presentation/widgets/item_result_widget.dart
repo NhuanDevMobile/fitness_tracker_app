@@ -2,14 +2,16 @@ import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_spand_wdiget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
+import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_upgrade_pro_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class ItemResultDiary extends StatelessWidget {
-  final int kCal;
-  const ItemResultDiary({super.key, required this.kCal});
+class ItemResultDiary extends GetView<DiaryController> {
+  const ItemResultDiary({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class ItemResultDiary extends StatelessWidget {
                     Expanded(
                       child: TextSpanWidget(
                         text1: "energy_input",
-                        text2: "$kCal Kcal",
+                        text2: "${controller.user!.getKcal()} Kcal",
                         textColor2: AppColors.primary,
                         fontWeight2: FontWeight.bold,
                       ),
@@ -77,8 +79,8 @@ class ItemResultDiary extends StatelessWidget {
                             height: 50.0,
                             width: 40.0,
                           ),
-                          const TextWidget(
-                            text: "0",
+                          TextWidget(
+                            text: controller.getCaloriesConsume().toString(),
                             color: AppColors.black,
                             fontWeight: FontWeight.w600,
                           ),
@@ -95,26 +97,36 @@ class ItemResultDiary extends StatelessWidget {
                           child: CircularPercentIndicator(
                             radius: 70.0,
                             lineWidth: 10.0,
-                            percent: 0.5,
+                            percent: CalculatorUtils.phanTramTieuThu(
+                                    consumed: controller.user!.getKcal(),
+                                    target: controller.getCaloriesConsume()) /
+                                100,
                             backgroundColor: AppColors.grey,
                             progressColor: AppColors.primary,
-                            center: const Column(
+                            center: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextWidget(
-                                  text: "0",
+                                  text: controller.user!.getKcal().toString(),
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                TextWidget(
+                                const TextWidget(
                                   text: "remaining",
                                   color: AppColors.grey,
                                   fontWeight: FontWeight.w600,
                                   size: AppDimens.textSize16,
                                 ),
                                 TextWidget(
-                                  text: "2072",
+                                  text: CalculatorUtils.soDaTieuThu(
+                                    total:
+                                        controller.user!.getKcal().toDouble(),
+                                    percent: CalculatorUtils.phanTramConLai(
+                                      consumed: controller.user!.getKcal(),
+                                      target: controller.getCaloriesConsume(),
+                                    ),
+                                  ).toStringAsFixed(2),
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                   size: AppDimens.textSize22,
