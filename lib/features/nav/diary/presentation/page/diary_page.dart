@@ -137,18 +137,20 @@ class DiaryPage extends GetView<DiaryController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
-            text: "exercise",
+            text: "practise",
             fontWeight: FontWeight.w600,
             color: AppColors.black,
           ),
           const SizedBox(height: 10.0),
           ItemDailyMeal(
             color: AppColors.error,
-            title: 'Snack',
+            title: 'practise',
             kCal:
                 controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
             consumeKcal: 0,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.activity);
+            },
           ),
         ],
       ),
