@@ -15,4 +15,6 @@ abstract class Routes {
   static const createScheduleWater = "/createScheduleWater";
   static const createFoodPage = "/createFoodPage";
   static const foodCart = "/foodCart";
+  static const activity = "/activity";
+  static const searchActivity = "/searchActivity";
 }

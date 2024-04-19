@@ -1,5 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/enum.dart';
+import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
@@ -153,32 +154,34 @@ class DiaryPage extends GetView<DiaryController> {
 
   _buildExercise() {
     return GetBuilder<DiaryController>(
-      id: "fetchRelationshipFood",
-      builder: (logic) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TextWidget(
-                text: "exercise",
-                fontWeight: FontWeight.w600,
-                color: AppColors.black,
-              ),
-              const SizedBox(height: 10.0),
-              ItemDailyMeal(
-                color: AppColors.error,
-                title: 'Snack',
-                kCal: controller.user!
-                    .getDailyMeal(dailyMeals: DailyMeals.breakfast),
-                consumeKcal: 0,
-                onTap: () {},
-                relationshipFoods: controller.snacks,
-              ),
-            ],
-          ),
-        );
-      },
-    );
+        id: "fetchRelationshipFood",
+        builder: (logic) {
+          return Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const TextWidget(
+                  text: "practise",
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.black,
+                ),
+                const SizedBox(height: 10.0),
+                ItemDailyMeal(
+                  color: AppColors.error,
+                  title: 'practise',
+                  kCal: controller.user!
+                      .getDailyMeal(dailyMeals: DailyMeals.breakfast),
+                  consumeKcal: 0,
+                  onTap: () {
+                    Get.toNamed(Routes.activity);
+                  },
+                  relationshipFoods: [],
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

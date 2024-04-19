@@ -78,4 +78,6 @@ const Map<String, String> vi = {
   'save_food_error': 'Lưu thất bại',
   'delete_saved_food_success': 'Xóa thực phẩm đã lưu thành công',
   'delete_saved_food_error': 'Xóa thất bại',
+  'add_exercise': 'Thêm bài tập',
+  'search_activity': 'Tìm kiếm bài tập',
 };
