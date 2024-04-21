@@ -127,7 +127,7 @@ class ItemResultDiary extends StatelessWidget {
                       Column(
                         children: [
                           SvgPicture.asset(
-                            'assets/icons/ic_fire.svg',
+                            'assets/icons/ic_fire_small.svg',
                             height: 40.0,
                             width: 40.0,
                           ),
@@ -152,18 +152,18 @@ class ItemResultDiary extends StatelessWidget {
                   children: [
                     _itemNutrients(
                         title: 'Carbs',
+                        value: '${calculateCarbs(kCal)}',
+                        percent: 0.5,
+                        remaining: '0g'),
+                    const SizedBox(width: 12.0),
+                    _itemNutrients(
+                        title: 'Protein',
                         value: '0g',
                         percent: 0.5,
                         remaining: '0g'),
                     const SizedBox(width: 12.0),
                     _itemNutrients(
-                        title: 'Carbs',
-                        value: '0g',
-                        percent: 0.5,
-                        remaining: '0g'),
-                    const SizedBox(width: 12.0),
-                    _itemNutrients(
-                        title: 'Carbs',
+                        title: 'Fat',
                         value: '0g',
                         percent: 0.5,
                         remaining: '10g'),
@@ -230,5 +230,19 @@ class ItemResultDiary extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  double calculateCarbs(int totalCalories) {
+    return (totalCalories * 0.45) / 4; // Mỗi gram carbs có 4 calo
+  }
+
+// Hàm tính lượng protein từ tổng calo hàng ngày
+  double calculateProtein(int totalCalories) {
+    return (totalCalories * 0.25) / 4; // Mỗi gram protein có 4 calo
+  }
+
+// Hàm tính lượng fat từ tổng calo hàng ngày
+  double calculateFat(int totalCalories) {
+    return (totalCalories * 0.3) / 9; // Mỗi gram fat có 9 calo
   }
 }
