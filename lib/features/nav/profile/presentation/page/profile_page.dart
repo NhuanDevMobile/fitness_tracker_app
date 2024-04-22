@@ -1,4 +1,6 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
+import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_activity.dart';
+import 'package:fitness_tracker_app/core/ui/widgets/button/button_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/features/nav/profile/presentation/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ class ProfilePage extends GetView<ProfileController> {
           SliverAppBar(
               backgroundColor: AppColors.primary,
               expandedHeight: 200.0,
+              elevation: 0,
               floating: false,
               pinned: true,
               flexibleSpace: LayoutBuilder(
@@ -25,23 +28,46 @@ class ProfilePage extends GetView<ProfileController> {
                 top = constraints.biggest.height;
                 return FlexibleSpaceBar(
                   centerTitle: true,
-                  title: const AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    //opacity: top == MediaQuery.of(context).padding.top + kToolbarHeight ? 1.0 : 0.0,
-                    opacity: 1.0,
-                    child: Row(
-                      children: [
-                        TextWidget(text: "text"),
-                      ],
+                  title: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 100),
+                    opacity: top ==
+                            MediaQuery.of(context).padding.top + kToolbarHeight
+                        ? 1.0
+                        : 0.0,
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          top: 50.0, left: 20.0, right: 20.0),
+                      child: const Row(
+                        children: [
+                          CircleAvatar(),
+                          Expanded(
+                              child: Center(
+                                  child: TextWidget(text: "Flutter Baba"))),
+                          SizedBox(
+                            width: 40.0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  background: Container(
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TextWidget(text: "text"),
-                      ],
-                    ),
+                  background: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 50.0,
+                      ),
+                      const CircleAvatar(
+                        radius: 50.0,
+                      ),
+                      const TextWidget(text: "sdasda"),
+                      ButtonWidget(
+                          ontap: () async {
+                            final result = await FirestoreActivity.getFoods();
+                            print(result.data);
+                          },
+                          text: "text")
+                    ],
                   ),
                 );
               })),
