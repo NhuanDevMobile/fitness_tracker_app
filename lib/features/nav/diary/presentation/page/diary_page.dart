@@ -9,6 +9,7 @@ import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/d
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_water_widget.dart';
+import 'package:fitness_tracker_app/features/nav/subscription/presentation/widget/item_subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -45,8 +46,21 @@ class DiaryPage extends GetView<DiaryController> {
                   controller.selectDate(result);
                 }
               },
-              child: SvgPicture.asset('assets/icons/ic_calendar.svg'),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: SvgPicture.asset(
+                  'assets/icons/ic_calendar.svg',
+                  height: 24.0,
+                  color: AppColors.white,
+                ),
+              ),
             ),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(right: 10.0),
+                child: ItemSubscription(),
+              )
+            ],
           ),
           body: SingleChildScrollView(
               child: GetBuilder<DiaryController>(
