@@ -36,6 +36,7 @@ class ImageNetWotkSquareWidget extends StatelessWidget {
                 return const Icon(Icons.error);
               },
               errorListener: null,
+              // fit: BoxFit.contain,
             )
           : const Icon(Icons.error),
     );

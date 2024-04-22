@@ -2,6 +2,7 @@ import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/my_separator_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class ItemDailyMeal extends StatelessWidget {
   final int kCal;
   final double consumeKcal;
   final VoidCallback onTap;
+  final List<UserRelationshipFoodModel> relationshipFoods;
   const ItemDailyMeal({
     super.key,
     required this.color,
@@ -19,6 +21,7 @@ class ItemDailyMeal extends StatelessWidget {
     required this.kCal,
     required this.consumeKcal,
     required this.onTap,
+    required this.relationshipFoods,
   });
 
   @override
@@ -61,7 +64,7 @@ class ItemDailyMeal extends StatelessWidget {
                           ),
                           const SizedBox(width: 4.0),
                           TextWidget(
-                            text: "$kCal Kcal",
+                            text: "${consumeKcal.toStringAsFixed(2)} Kcal",
                             color: AppColors.black,
                             fontWeight: FontWeight.w600,
                           ),
@@ -88,41 +91,50 @@ class ItemDailyMeal extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10.0),
-            ListView.builder(
-              padding: const EdgeInsets.only(left: 12.0),
-              itemCount: 3,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 12.0),
-                  child: const Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      TextWidget(
-                        textAlign: TextAlign.end,
-                        text: "Coffe with milk",
-                        color: AppColors.grey1,
-                        size: AppDimens.textSize12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      Expanded(
-                        child: MySeparator(color: AppColors.grey, height: 1.0),
-                      ),
-                      TextWidget(
-                        text: "56 Kcal",
-                        textAlign: TextAlign.end,
-                        size: AppDimens.textSize16,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.grey1,
-                      )
-                    ],
-                  ),
-                );
-              },
-            )
+            relationshipFoods.isNotEmpty
+                ? ListView.builder(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    itemCount: relationshipFoods.length >= 3
+                        ? 3
+                        : relationshipFoods.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return itemDailyMeal(
+                          relationshipFood: relationshipFoods[index]);
+                    },
+                  )
+                : const SizedBox.shrink()
           ],
         ),
+      ),
+    );
+  }
+
+  Widget itemDailyMeal({required UserRelationshipFoodModel relationshipFood}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          TextWidget(
+            textAlign: TextAlign.end,
+            text: relationshipFood.getNameFood(),
+            color: AppColors.grey1,
+            size: AppDimens.textSize12,
+            fontWeight: FontWeight.w400,
+          ),
+          const Expanded(
+            child: MySeparator(color: AppColors.grey, height: 1.0),
+          ),
+          TextWidget(
+            text: relationshipFood.getKcalFood(),
+            textAlign: TextAlign.end,
+            size: AppDimens.textSize16,
+            fontWeight: FontWeight.w600,
+            color: AppColors.grey1,
+          )
+        ],
       ),
     );
   }

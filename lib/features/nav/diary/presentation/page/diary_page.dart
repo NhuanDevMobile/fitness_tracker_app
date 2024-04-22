@@ -5,7 +5,6 @@ import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/utils/date_time.dart';
-import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/food_argument.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
@@ -20,154 +19,183 @@ class DiaryPage extends GetView<DiaryController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(
-        backgroundColor: AppColors.primary,
-        title: DatetimeUtil.formatDateTimeFormat(controller.dateTime),
-        centerTitle: true,
-        titleColor: AppColors.white,
-        leading: GestureDetector(
-          onTap: () async {
-            final result = await Get.bottomSheet(
-              CustomCalendar(
-                selectedDay: controller.dateTime,
-              ),
-              isScrollControlled: true,
-              isDismissible: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16.0),
+    return GetBuilder<DiaryController>(
+      id: "fetchDate",
+      builder: (logic) {
+        return Scaffold(
+          appBar: AppBarWidget(
+            backgroundColor: AppColors.primary,
+            title: DatetimeUtil.formatDateTimeFormat(controller.dateTime),
+            centerTitle: true,
+            titleColor: AppColors.white,
+            leading: GestureDetector(
+              onTap: () async {
+                final result = await Get.bottomSheet(
+                  CustomCalendar(
+                    selectedDay: controller.dateTime,
+                  ),
+                  isScrollControlled: true,
+                  isDismissible: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16.0),
+                    ),
+                  ),
+                );
+                if (result != null) {
+                  controller.selectDate(result);
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: SvgPicture.asset(
+                  'assets/icons/ic_calendar.svg',
+                  height: 24.0,
+                  color: AppColors.white,
                 ),
               ),
-            );
-            if (result != null) {
-              controller.dateTime = result;
-              // controller.update(['updateTitle']);
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: SvgPicture.asset(
-              'assets/icons/ic_calendar.svg',
-              height: 24.0,
-              color: AppColors.white,
             ),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(right: 10.0),
+                child: ItemSubscription(),
+              )
+            ],
           ),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: ItemSubscription(),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-          child: GetBuilder<DiaryController>(
-        id: "fetchDiary",
-        builder: (_) => controller.user == null
-            ? const SizedBox.shrink()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ItemResultDiary(
-                    kCal: controller.user!.getKcal(),
+          body: SingleChildScrollView(
+              child: GetBuilder<DiaryController>(
+            id: "fetchDiary",
+            builder: (_) => controller.user == null
+                ? const SizedBox.shrink()
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const ItemResultDiary(),
+                      ItemWaterWidget(
+                        value: 0.5,
+                        recommendedValue: controller.user!.getWater(),
+                        onTap: () {
+                          controller.onTapWater();
+                        },
+                        consumedWater: controller.consumedWater,
+                      ),
+                      _buildDailyMeal(),
+                      _buildExercise(),
+                    ],
                   ),
-                  ItemWaterWidget(
-                    value: 0.5,
-                    recommendedValue: controller.user!.getWater(),
-                    onTap: () {
-                      controller.onTapWater();
-                    },
-                    consumedWater: controller.consumedWater,
-                  ),
-                  _buildDailyMeal(),
-                  _buildExercise(),
-                ],
-              ),
-      )),
+          )),
+        );
+      },
     );
   }
 
   _buildDailyMeal() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TextWidget(
-            text: "daily_meals",
-            fontWeight: FontWeight.w600,
-            color: AppColors.black,
+    return GetBuilder<DiaryController>(
+      id: "fetchRelationshipFood",
+      builder: (logic) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TextWidget(
+                text: "daily_meals",
+                fontWeight: FontWeight.w600,
+                color: AppColors.black,
+              ),
+              const SizedBox(height: 10.0),
+              ItemDailyMeal(
+                color: AppColors.primary,
+                title: 'Breakfast',
+                kCal: controller.user!
+                    .getDailyMeal(dailyMeals: DailyMeals.breakfast),
+                consumeKcal: controller.getCalories(controller.breakfasts),
+                onTap: () async {
+                  controller.gotoPage(
+                      meals: DailyMeals.breakfast,
+                      foodRelationship: controller.breakfasts);
+                },
+                relationshipFoods: controller.breakfasts,
+              ),
+              const SizedBox(height: 16.0),
+              ItemDailyMeal(
+                color: AppColors.secondary,
+                title: 'Lunch',
+                kCal:
+                    controller.user!.getDailyMeal(dailyMeals: DailyMeals.lunch),
+                consumeKcal: controller.getCalories(controller.lunchs),
+                onTap: () async {
+                  controller.gotoPage(
+                      meals: DailyMeals.lunch,
+                      foodRelationship: controller.lunchs);
+                },
+                relationshipFoods: controller.lunchs,
+              ),
+              const SizedBox(height: 16.0),
+              ItemDailyMeal(
+                color: const Color(0xFF12E5B0),
+                title: 'Dinner',
+                kCal: controller.user!
+                    .getDailyMeal(dailyMeals: DailyMeals.dinner),
+                consumeKcal: controller.getCalories(controller.dinners),
+                onTap: () async {
+                  controller.gotoPage(
+                      meals: DailyMeals.dinner,
+                      foodRelationship: controller.dinners);
+                },
+                relationshipFoods: controller.dinners,
+              ),
+              const SizedBox(height: 16.0),
+              ItemDailyMeal(
+                color: const Color(0xffB575E7),
+                title: 'Snack',
+                kCal:
+                    controller.user!.getDailyMeal(dailyMeals: DailyMeals.snack),
+                consumeKcal: controller.getCalories(controller.snacks),
+                onTap: () async {
+                  controller.gotoPage(
+                      meals: DailyMeals.snack,
+                      foodRelationship: controller.snacks);
+                },
+                relationshipFoods: controller.snacks,
+              ),
+            ],
           ),
-          const SizedBox(height: 10.0),
-          ItemDailyMeal(
-            color: AppColors.primary,
-            title: 'Breakfast',
-            kCal:
-                controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
-            consumeKcal: 0,
-            onTap: () {
-              Get.toNamed(Routes.foods,
-                  arguments: FoodArgument(
-                    listFood: [],
-                    typeDailyMeal: DailyMeals.breakfast,
-                    dateTime: DateTime.now(),
-                  ));
-            },
-          ),
-          const SizedBox(height: 16.0),
-          ItemDailyMeal(
-            color: AppColors.secondary,
-            title: 'Lunch',
-            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.lunch),
-            consumeKcal: 0,
-            onTap: () {},
-          ),
-          const SizedBox(height: 16.0),
-          ItemDailyMeal(
-            color: const Color(0xFF12E5B0),
-            title: 'Dinner',
-            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.dinner),
-            consumeKcal: 0,
-            onTap: () {},
-          ),
-          const SizedBox(height: 16.0),
-          ItemDailyMeal(
-            color: const Color(0xffB575E7),
-            title: 'Snack',
-            kCal: controller.user!.getDailyMeal(dailyMeals: DailyMeals.snack),
-            consumeKcal: 0,
-            onTap: () {},
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
   _buildExercise() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TextWidget(
-            text: "practise",
-            fontWeight: FontWeight.w600,
-            color: AppColors.black,
-          ),
-          const SizedBox(height: 10.0),
-          ItemDailyMeal(
-            color: AppColors.error,
-            title: 'practise',
-            kCal:
-                controller.user!.getDailyMeal(dailyMeals: DailyMeals.breakfast),
-            consumeKcal: 0,
-            onTap: () {
-              Get.toNamed(Routes.activity);
-            },
-          ),
-        ],
-      ),
-    );
+    return GetBuilder<DiaryController>(
+        id: "fetchRelationshipFood",
+        builder: (logic) {
+          return Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const TextWidget(
+                  text: "practise",
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.black,
+                ),
+                const SizedBox(height: 10.0),
+                ItemDailyMeal(
+                  color: AppColors.error,
+                  title: 'practise',
+                  kCal: controller.user!
+                      .getDailyMeal(dailyMeals: DailyMeals.breakfast),
+                  consumeKcal: 0,
+                  onTap: () {
+                    Get.toNamed(Routes.activity);
+                  },
+                  relationshipFoods: const [],
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

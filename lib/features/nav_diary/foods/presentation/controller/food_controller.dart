@@ -2,6 +2,7 @@ import 'package:fitness_tracker_app/core/configs/enum.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_food.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_saved_food.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_food.dart';
+import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_relationship_food.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/snackbar/snackbar.dart';
 import 'package:fitness_tracker_app/features/auth/user/domain/use_case/get_user_use_case.dart';
@@ -9,23 +10,35 @@ import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/fo
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/saved_food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_food_model.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class FoodController extends GetxController {
   final FoodArgument argument = Get.arguments;
   List<FoodModel> foods = [];
   List<UserFoodModel> myFoods = [];
   List<SavedFoodModel> savedFoods = [];
+  List<UserRelationshipFoodModel> listFoodRelationship = [];
   RxInt currentPage = 0.obs;
   GetuserUseCase getuserUseCase = Get.find();
+  int mealId = 0;
+  String userId = "";
   @override
   void onInit() async {
     await getuserUseCase.getUser().then((value) {
+      userId = value!.uid ?? "";
       getMyFoods(userId: value!.uid ?? "");
       getSavedFoods(userId: value.uid ?? "");
     });
     getFoods();
+    setFood();
     super.onInit();
+  }
+
+  void setFood() {
+    listFoodRelationship = argument.listFoodRelationship;
+    update(['listFoodRelationship']);
   }
 
   void getFoods() async {
@@ -63,6 +76,22 @@ class FoodController extends GetxController {
     update(["fetchFoods"]);
   }
 
+  void addFoodRelationship(
+      {required UserRelationshipFoodModel userRelationFood}) async {
+    userRelationFood.mealId = getMealId();
+    userRelationFood.createAt =
+        DateFormat("yyyy-MM-dd'T'00:00:00").format(argument.dateTime);
+    final result = await FirestoreUserRelationshipFood.create(
+        userRelationshipFoodModel: userRelationFood, userId: userId);
+
+    if (result.status == Status.success) {
+      listFoodRelationship.insert(0, userRelationFood);
+      update(["listFoodRelationship"]);
+    } else {
+      SnackbarUtil.show(result.exp!.message ?? "something_went_wrong");
+    }
+  }
+
   String titleAppBar() {
     if (argument.typeDailyMeal == DailyMeals.breakfast) {
       return "breakfast".tr;
@@ -74,6 +103,20 @@ class FoodController extends GetxController {
       return "snack".tr;
     } else {
       return '';
+    }
+  }
+
+  int getMealId() {
+    if (argument.typeDailyMeal == DailyMeals.breakfast) {
+      return 1;
+    } else if (argument.typeDailyMeal == DailyMeals.lunch) {
+      return 2;
+    } else if (argument.typeDailyMeal == DailyMeals.dinner) {
+      return 3;
+    } else if (argument.typeDailyMeal == DailyMeals.snack) {
+      return 4;
+    } else {
+      return 1;
     }
   }
 
