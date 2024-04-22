@@ -15,11 +15,13 @@ class SearchActivityPage extends StatelessWidget {
         title: 'search_activity',
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          _buildSearch(),
-          _buildListSearch(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildSearch(),
+            _buildListSearch(),
+          ],
+        ),
       ),
     );
   }
