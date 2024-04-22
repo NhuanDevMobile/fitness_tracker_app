@@ -56,7 +56,11 @@ class FoodPage extends GetView<FoodController> {
 
   _buildIconRight() {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.foodCart),
+      onTap: () async {
+        final result =
+            await Get.toNamed(Routes.foodCart, arguments: controller.argument);
+        controller.update(['listFoodRelationship']);
+      },
       child: Padding(
         padding: const EdgeInsets.only(right: 10.0, bottom: 4.0),
         child: SizedBox(
@@ -84,12 +88,19 @@ class FoodPage extends GetView<FoodController> {
                     color: AppColors.secondary,
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
-                      child: TextWidget(
-                    text: "1",
-                    size: AppDimens.textSize12,
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w500,
+                  child: Center(
+                      child: GetBuilder<FoodController>(
+                    id: "listFoodRelationship",
+                    builder: (logic) {
+                      return TextWidget(
+                        text: controller.listFoodRelationship.isNotEmpty
+                            ? controller.listFoodRelationship.length.toString()
+                            : "0",
+                        size: AppDimens.textSize12,
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w500,
+                      );
+                    },
                   )),
                 ),
               )

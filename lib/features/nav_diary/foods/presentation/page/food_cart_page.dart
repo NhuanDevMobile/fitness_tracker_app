@@ -3,27 +3,36 @@ import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/images/image_network_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/core/utils/date_time.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
+import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/controller/food_cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class FoodCartPage extends StatelessWidget {
+class FoodCartPage extends GetView<FoodCartController> {
   const FoodCartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: const AppBarWidget(
-        title: "Bua sang",
+      appBar: AppBarWidget(
+        title: controller.titleAppBar(),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          _buildHeader(),
-          const SizedBox(height: 12.0),
-          _buildListFood(),
-        ],
+      body: GetBuilder<FoodCartController>(
+        id: "foodCart",
+        builder: (logic) {
+          return Column(
+            children: [
+              _buildHeader(),
+              const SizedBox(height: 12.0),
+              _buildListFood(),
+            ],
+          );
+        },
       ),
     );
   }
@@ -47,22 +56,22 @@ class FoodCartPage extends StatelessWidget {
                 percent: 0.5,
                 backgroundColor: AppColors.gray,
                 progressColor: AppColors.white,
-                center: const Column(
+                center: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextWidget(
+                    const TextWidget(
                       text: "Đã ăn",
                       color: AppColors.white,
                       fontWeight: FontWeight.bold,
                     ),
                     TextWidget(
-                      text: "2072",
+                      text: controller.getCalories(),
                       color: AppColors.white,
                       fontWeight: FontWeight.bold,
                       size: AppDimens.textSize22,
                     ),
-                    TextWidget(
+                    const TextWidget(
                       text: "Calo",
                       color: AppColors.white,
                       fontWeight: FontWeight.w600,
@@ -72,14 +81,14 @@ class FoodCartPage extends StatelessWidget {
                 ),
               ),
             ),
-            const TextWidget(
-              text: "Bữa sáng",
+            TextWidget(
+              text: controller.titleAppBar(),
               color: AppColors.white,
               size: AppDimens.textSize20,
               fontWeight: FontWeight.bold,
             ),
-            const TextWidget(
-              text: "Ngày 12/12/2021",
+            TextWidget(
+              text: DatetimeUtil.formatCustom(controller.argument.dateTime),
               color: AppColors.white,
               size: AppDimens.textSize14,
               fontWeight: FontWeight.w600,
@@ -96,16 +105,16 @@ class FoodCartPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: Column(
           children: [
-            const Row(
+            Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: TextWidget(
                     text: "Đã thêm",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 TextWidget(
-                  text: "2 món",
+                  text: "${controller.listFoodRelationship.length} món",
                   fontWeight: FontWeight.w400,
                   size: AppDimens.textSize14,
                 )
@@ -113,28 +122,10 @@ class FoodCartPage extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: controller.listFoodRelationship.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                      leading: const ImageNetWotkSquareWidget(
-                          height: 100,
-                          width: 100,
-                          imageUrl:
-                              "https://nix-tag-images.s3.amazonaws.com/719_thumb.jpg"),
-                      title: TextWidget(
-                        text: "Food $index",
-                        fontWeight: FontWeight.w600,
-                      ),
-                      subtitle: const TextWidget(
-                        text: "1 qua to, 113 Calo",
-                        size: AppDimens.textSize14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      trailing: SvgPicture.asset(
-                        "assets/icons/ic_delete.svg",
-                        height: 24.0,
-                        color: AppColors.error,
-                      ));
+                  return itemFoodCart(
+                      relationshipFood: controller.listFoodRelationship[index]);
                 },
               ),
             ),
@@ -142,5 +133,33 @@ class FoodCartPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget itemFoodCart({required UserRelationshipFoodModel relationshipFood}) {
+    return ListTile(
+        leading: ImageNetWotkSquareWidget(
+            height: 100,
+            width: 100,
+            imageUrl: relationshipFood.photoUrl ??
+                "https://nix-tag-images.s3.amazonaws.com/719_thumb.jpg"),
+        title: TextWidget(
+          text: relationshipFood.foodName ?? "",
+          fontWeight: FontWeight.w600,
+        ),
+        subtitle: TextWidget(
+          text: relationshipFood.getDescriptionFood(),
+          size: AppDimens.textSize14,
+          fontWeight: FontWeight.w400,
+        ),
+        trailing: GestureDetector(
+          onTap: () {
+            controller.deleteItem(relationshipFood);
+          },
+          child: SvgPicture.asset(
+            "assets/icons/ic_delete.svg",
+            height: 24.0,
+            color: AppColors.error,
+          ),
+        ));
   }
 }

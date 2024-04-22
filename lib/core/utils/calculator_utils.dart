@@ -80,4 +80,29 @@ class CalculatorUtils {
         ? 100
         : percentage; // Giới hạn phần trăm tối đa là 100%
   }
+
+  static double phanTramTieuThu(
+      {required int consumed, required double target}) {
+    if (target <= 0) {
+      return 0.0; // Tránh chia cho 0
+    }
+    double percentage = (target / consumed) * 100;
+    return percentage > 100
+        ? 100
+        : percentage; // Giới hạn phần trăm tối đa là 100%
+  }
+
+  static double phanTramConLai(
+      {required int consumed, required double target}) {
+    if (target <= 0) {
+      return 0.0; // Tránh chia cho 0
+    }
+    double percentage = 100 - (target / consumed) * 100;
+    return percentage; // Giới hạn phần trăm tối đa là 100%
+  }
+
+  static double soDaTieuThu({required double total, required double percent}) {
+    double tieuThu = (percent / 100) * total;
+    return tieuThu <  0 ? 0 : tieuThu;
+  }
 }

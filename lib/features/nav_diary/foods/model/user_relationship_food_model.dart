@@ -45,4 +45,15 @@ class UserRelationshipFoodModel {
         "mealId": mealId,
         "nfCalories": nfCalories,
       };
+  String getNameFood() {
+    return "$servingQty $foodName";
+  }
+
+  String getKcalFood() {
+    return "$nfCalories Kcal";
+  }
+
+  String getDescriptionFood() {
+    return "$servingQty $servingUnit, $nfCalories Calo";
+  }
 }

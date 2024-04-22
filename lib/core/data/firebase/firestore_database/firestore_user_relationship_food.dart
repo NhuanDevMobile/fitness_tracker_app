@@ -30,9 +30,9 @@ class FirestoreUserRelationshipFood {
     try {
       QuerySnapshot querySnapshot =
           await _fireStoreUserRelationshipFoodCollection
-              .where('createAt', isEqualTo: userId)
-              .where('date', isEqualTo: date)
-              .where('mealId', isEqualTo: mealId)
+              .where('userId', isEqualTo: userId)
+              .where('createAt', isEqualTo: date)
+              // .where('mealId', isEqualTo: mealId)
               .get();
 
       List<UserRelationshipFoodModel> foodList = querySnapshot.docs
@@ -40,6 +40,17 @@ class FirestoreUserRelationshipFood {
               doc.data() as Map<String, dynamic>))
           .toList();
       return Result.success(foodList);
+    } on FirebaseException catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  static Future<Result<void>> delete(String idRelationFood) async {
+    try {
+      await _fireStoreUserRelationshipFoodCollection
+          .doc(idRelationFood)
+          .delete();
+      return Result.success(null);
     } on FirebaseException catch (e) {
       return Result.error(e);
     }
