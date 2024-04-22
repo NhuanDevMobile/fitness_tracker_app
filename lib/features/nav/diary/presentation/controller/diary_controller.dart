@@ -129,7 +129,7 @@ class DiaryController extends GetxController {
   gotoPage(
       {required DailyMeals meals,
       required List<UserRelationshipFoodModel> foodRelationship}) async {
-    final result = await Get.toNamed(
+    Get.toNamed(
       Routes.foods,
       arguments: FoodArgument(
           listFood: [],
