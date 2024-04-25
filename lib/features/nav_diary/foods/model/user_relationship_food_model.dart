@@ -8,6 +8,9 @@ class UserRelationshipFoodModel {
   String? servingUnit;
   int? mealId;
   double? nfCalories;
+  double? nfTotalFat;
+  double? nfTotalCarbohydrate;
+  double? nfProtein;
 
   UserRelationshipFoodModel({
     this.id,
@@ -19,6 +22,9 @@ class UserRelationshipFoodModel {
     this.servingUnit,
     this.mealId,
     this.nfCalories,
+    this.nfProtein,
+    this.nfTotalCarbohydrate,
+    this.nfTotalFat,
   });
 
   factory UserRelationshipFoodModel.fromJson(Map<String, dynamic> json) =>
@@ -32,6 +38,9 @@ class UserRelationshipFoodModel {
         servingUnit: json["servingUnit"],
         mealId: json["mealId"],
         nfCalories: json["nfCalories"]?.toDouble(),
+        nfProtein: json["nfProtein"]?.toDouble(),
+        nfTotalCarbohydrate: json["nfTotalCarbohydrate"]?.toDouble(),
+        nfTotalFat: json["nfTotalFat"]?.toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +53,9 @@ class UserRelationshipFoodModel {
         "servingUnit": servingUnit,
         "mealId": mealId,
         "nfCalories": nfCalories,
+        "nfProtein": nfProtein,
+        "nfTotalCarbohydrate": nfTotalCarbohydrate,
+        "nfTotalFat": nfTotalFat,
       };
   String getNameFood() {
     return "$servingQty $foodName";

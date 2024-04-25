@@ -172,23 +172,28 @@ class ItemResultDiary extends GetView<DiaryController> {
                     Row(
                       children: [
                         _itemNutrients(
-                            title: 'Carbs',
-                            value:
-                                '${calculateCarbs(controller.user!.getKcal())}',
-                            percent: 0.5,
-                            remaining: '0g'),
+                          title: 'Carbs',
+                          value: '0%',
+                          percent: 0.5,
+                          remaining:
+                              "${calculateCarbsRemaining(totalCalories: 1913, carbsConsume: 0).toStringAsFixed(1)} g",
+                        ),
                         const SizedBox(width: 12.0),
                         _itemNutrients(
-                            title: 'Protein',
-                            value: '0g',
-                            percent: 0.5,
-                            remaining: '0g'),
+                          title: 'Protein',
+                          value: '0g',
+                          percent: 0.5,
+                          remaining:
+                              "${calculateProteinRemaining(totalCalories: 1913, proteinConsume: 0).toStringAsFixed(1)} g",
+                        ),
                         const SizedBox(width: 12.0),
                         _itemNutrients(
-                            title: 'Fat',
-                            value: '0g',
-                            percent: 0.5,
-                            remaining: '10g'),
+                          title: 'Fat',
+                          value: '0g',
+                          percent: 0.5,
+                          remaining:
+                              "${calculateFatRemaining(totalCalories: 1913, fatConsume: 0).toStringAsFixed(1)} g",
+                        ),
                       ],
                     )
                   ],
@@ -256,17 +261,22 @@ class ItemResultDiary extends GetView<DiaryController> {
     );
   }
 
-  double calculateCarbs(int totalCalories) {
-    return (totalCalories * 0.45) / 4; // Mỗi gram carbs có 4 calo
+  double calculateCarbsRemaining(
+      {required int totalCalories, required int carbsConsume}) {
+    return ((totalCalories * 0.45) / 4) -
+        carbsConsume; // Mỗi gram carbs có 4 calo
   }
 
 // Hàm tính lượng protein từ tổng calo hàng ngày
-  double calculateProtein(int totalCalories) {
-    return (totalCalories * 0.25) / 4; // Mỗi gram protein có 4 calo
+  double calculateProteinRemaining(
+      {required int totalCalories, required int proteinConsume}) {
+    return ((totalCalories * 0.25) / 4) -
+        proteinConsume; // Mỗi gram protein có 4 calo
   }
 
-// Hàm tính lượng fat từ tổng calo hàng ngày
-  double calculateFat(int totalCalories) {
-    return (totalCalories * 0.3) / 9; // Mỗi gram fat có 9 calo
+  double calculateFatRemaining(
+      {required int totalCalories, required int fatConsume}) {
+    return ((totalCalories * 0.3) / 9) -
+        fatConsume; // Mỗi gram protein có 4 calo
   }
 }
