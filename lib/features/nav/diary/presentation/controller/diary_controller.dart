@@ -1,4 +1,5 @@
 import 'package:fitness_tracker_app/core/configs/enum.dart';
+import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_relationship_activity.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_user_relationship_food.dart';
 import 'package:fitness_tracker_app/core/data/firebase/firestore_database/firestore_water.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
@@ -7,6 +8,8 @@ import 'package:fitness_tracker_app/core/utils/date_time.dart';
 import 'package:fitness_tracker_app/features/auth/user/domain/use_case/get_user_use_case.dart';
 import 'package:fitness_tracker_app/features/auth/user/model/user_model.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/arguments/food_argument.dart';
+import 'package:fitness_tracker_app/features/nav_diary/activity/models/user_relationship_activity_model.dart';
+import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/arguments/activity_argument.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/model/user_relationship_food_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/model/water_model.dart';
 import 'package:fitness_tracker_app/features/nav_diary/water_drinking/presentation/argument/water_argument.dart';
@@ -22,6 +25,7 @@ class DiaryController extends GetxController {
   List<UserRelationshipFoodModel> lunchs = [];
   List<UserRelationshipFoodModel> dinners = [];
   List<UserRelationshipFoodModel> snacks = [];
+  List<UserRelationshipActivityModel> listActivityRelationship = [];
   DateTime dateTime = DateTime.now();
   int consumedWater = 0;
   RxString titleDate = "".obs;
@@ -37,6 +41,7 @@ class DiaryController extends GetxController {
     if (user != null) {
       getWaterDiarys();
       getRelationshipFood();
+      getRelationshipActivity();
     }
     update(["fetchDiary"]);
     super.onInit();
@@ -82,6 +87,15 @@ class DiaryController extends GetxController {
     return nfCalories;
   }
 
+  double getCaloriesConsumeActivity() {
+    double nfCalories = 0;
+    for (var item in listActivityRelationship) {
+      nfCalories += item.nfCalories ?? 0;
+    }
+
+    return nfCalories;
+  }
+
   void clearDaTa() {
     snacks.clear();
     breakfasts.clear();
@@ -102,6 +116,19 @@ class DiaryController extends GetxController {
         snacks = list.where((element) => element.mealId! == 4).toList();
       }
       update(["fetchRelationshipFood", "fetchDiary"]);
+    } else {
+      SnackbarUtil.show(result.exp?.message ?? "something_went_wrong");
+    }
+  }
+
+  getRelationshipActivity() async {
+    final result = await FirestoreUserRelationshipActivity.getActivityByDate(
+        userId: user!.uid!, date: DatetimeUtil.format(dateTime));
+    if (result.status == Status.success) {
+      if (result.data!.isNotEmpty) {
+        listActivityRelationship = result.data!;
+      }
+      update(["fetchRelationshipActivity"]);
     } else {
       SnackbarUtil.show(result.exp?.message ?? "something_went_wrong");
     }
@@ -138,5 +165,17 @@ class DiaryController extends GetxController {
           listFoodRelationship: foodRelationship),
     );
     update(['fetchRelationshipFood', 'fetchDiary']);
+  }
+
+  gotoPageActivity() async {
+    await Get.toNamed(
+      Routes.activity,
+      arguments: ActivityArgument(
+        listActivity: [],
+        dateTime: dateTime,
+        listActivityRelationship: listActivityRelationship,
+      ),
+    );
+    update(['fetchRelationshipActivity']);
   }
 }

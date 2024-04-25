@@ -52,6 +52,13 @@ class ActivityModel {
         "name": name,
         "nf_calories": nfCalories,
       };
+  String getNameActivity() {
+    return "$durationMin phút $name";
+  }
+
+  String getKcalActivity() {
+    return "$nfCalories Kcal";
+  }
 }
 
 class Photo {

@@ -1,8 +1,11 @@
+import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/app_dimens.dart';
 import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
+import 'package:fitness_tracker_app/core/utils/calculator_utils.dart';
 import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/controller/activity_controller.dart';
+import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/widgets/activity_relationship_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/widgets/activity_suggest_widget.dart';
 import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/widgets/item_activity_empty.dart';
 import 'package:fitness_tracker_app/features/nav_diary/foods/presentation/widgets/item_header_food.dart';
@@ -21,15 +24,13 @@ class ActivityPage extends GetView<ActivityController> {
         title: 'add_exercise',
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildResult(),
-            _buildHeader(),
-            _buldListExercise(),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildResult(),
+          _buildHeader(),
+          _buldListExercise(),
+        ],
       ),
     );
   }
@@ -42,35 +43,60 @@ class ActivityPage extends GetView<ActivityController> {
       color: Colors.white,
       child: Column(
         children: [
-          Row(
-            children: [
-              CircularPercentIndicator(
-                radius: 26.0,
-                center: SvgPicture.asset("assets/icons/ic_fire_small.svg"),
-              ),
-              const SizedBox(width: 10.0),
-              const Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          GetBuilder<ActivityController>(
+            id: "progressBar",
+            builder: (logic) {
+              return Row(
                 children: [
-                  TextWidget(
-                    text: "0/0 Calo",
-                    size: AppDimens.textSize16,
-                    fontWeight: FontWeight.w600,
+                  CircularPercentIndicator(
+                    radius: 26.0,
+                    center: SvgPicture.asset("assets/icons/ic_fire_small.svg"),
+                    lineWidth: 10.0,
+                    backgroundColor: AppColors.grey,
+                    progressColor: AppColors.primary,
+                    percent: CalculatorUtils.phanTramTieuThu(
+                            consumed: 1900,
+                            target: controller.getCaloriesConsume()) /
+                        100,
                   ),
-                  TextWidget(
-                    text: "Calo dot chay",
-                    size: AppDimens.textSize14,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  const SizedBox(width: 10.0),
+                  Expanded(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        text:
+                            "${controller.getCaloriesConsume().toStringAsFixed(2)}/1900 Calo",
+                        size: AppDimens.textSize16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      const TextWidget(
+                        text: "Calo dot chay",
+                        size: AppDimens.textSize14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ],
+                  )),
+                  GestureDetector(
+                    onTap: () {
+                      controller.goToSearchPage();
+                    },
+                    child: SvgPicture.asset("assets/icons/ic_add.svg"),
+                  )
                 ],
-              )),
-              SvgPicture.asset("assets/icons/ic_add.svg")
-            ],
+              );
+            },
           ),
-          ItemActivityEmpty(
-            onTap: () {
-              Get.toNamed(Routes.searchActivity);
+          GetBuilder<ActivityController>(
+            id: "listActivityRelationship",
+            builder: (logic) {
+              return controller.listActivityRelationship.isEmpty
+                  ? ItemActivityEmpty(
+                      onTap: () {
+                        Get.toNamed(Routes.searchActivity);
+                      },
+                    )
+                  : const ActivityRelationshipWidget();
             },
           )
         ],

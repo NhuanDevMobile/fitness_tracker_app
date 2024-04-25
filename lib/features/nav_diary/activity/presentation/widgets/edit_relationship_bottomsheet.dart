@@ -3,15 +3,15 @@ import 'package:fitness_tracker_app/core/ui/widgets/button/elevated_button_widge
 import 'package:fitness_tracker_app/core/ui/widgets/images/image_network_square.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/textfield/textfield_widget.dart';
-import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/controller/item_activity_controller.dart';
+import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/controller/item_relationship_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class AddActivityBottomSheet extends GetView<ItemActivityController> {
+class EditRelationshipBottomSheet extends GetView<ItemRelationshipController> {
   final VoidCallback onTapAdd;
 
-  const AddActivityBottomSheet({super.key, required this.onTapAdd});
+  const EditRelationshipBottomSheet({super.key, required this.onTapAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,8 @@ class AddActivityBottomSheet extends GetView<ItemActivityController> {
                           height: 60.0,
                           width: 60.0,
                           imageUrl:
-                              controller.activityModel!.photo!.thumb ?? "",
+                              controller.userRelationshipActivity!.photoUrl ??
+                                  "",
                           borderRadius: 10.0),
                       const SizedBox(width: 10.0),
                       Expanded(
@@ -56,11 +57,13 @@ class AddActivityBottomSheet extends GetView<ItemActivityController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextWidget(
-                                text: controller.activityModel!.name ?? "",
+                                text: controller.userRelationshipActivity!
+                                        .exerciseName ??
+                                    "",
                                 size: 16.0,
                                 fontWeight: FontWeight.w400),
                             const SizedBox(height: 5.0),
-                            GetBuilder<ItemActivityController>(
+                            GetBuilder<ItemRelationshipController>(
                               id: "kcal",
                               builder: (logic) {
                                 return TextWidget(

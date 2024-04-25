@@ -37,4 +37,11 @@ class UserRelationshipActivityModel {
         "duration": duration,
         "nfCalories": nfCalories,
       };
+  String getNameActivity() {
+    return "$duration phút $exerciseName";
+  }
+
+  String getKcalActivity() {
+    return "$nfCalories Kcal";
+  }
 }

@@ -63,7 +63,8 @@ class ProfilePage extends GetView<ProfileController> {
                       const TextWidget(text: "sdasda"),
                       ButtonWidget(
                           ontap: () async {
-                            final result = await FirestoreActivity.getFoods();
+                            final result =
+                                await FirestoreActivity.getActivities();
                             print(result.data);
                           },
                           text: "text")

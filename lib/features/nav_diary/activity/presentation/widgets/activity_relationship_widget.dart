@@ -1,26 +1,27 @@
 import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/controller/activity_controller.dart';
-import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/widgets/item_activity.dart';
+import 'package:fitness_tracker_app/features/nav_diary/activity/presentation/widgets/item_activity_relationship.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ActivitySuggestWidget extends GetView<ActivityController> {
-  const ActivitySuggestWidget({super.key});
+class ActivityRelationshipWidget extends GetView<ActivityController> {
+  const ActivityRelationshipWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GetBuilder<ActivityController>(
-        id: "fetchActivity",
+        id: "listActivityRelationship",
         builder: (logic) {
-          return controller.listActivitySuggest.isNotEmpty
+          return controller.listActivityRelationship.isNotEmpty
               ? ListView.builder(
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  itemCount: controller.listActivitySuggest.length,
+                  itemCount: controller.listActivityRelationship.length,
                   // physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return ItemActivity(
-                      activityModel: controller.listActivitySuggest[index],
+                    return ItemActivityRelationship(
+                      userRelationshipActivity:
+                          controller.listActivityRelationship[index],
                     );
                   })
               : const SizedBox.shrink();
