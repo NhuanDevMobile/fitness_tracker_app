@@ -1,11 +1,11 @@
 import 'package:fitness_tracker_app/core/configs/app_colors.dart';
 import 'package:fitness_tracker_app/core/configs/enum.dart';
-import 'package:fitness_tracker_app/core/routes/routes.dart';
 import 'package:fitness_tracker_app/core/ui/calendar/custom_calendar.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/appbar/appbar_widget.dart';
 import 'package:fitness_tracker_app/core/ui/widgets/text/text_widget.dart';
 import 'package:fitness_tracker_app/core/utils/date_time.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/controller/diary_controller.dart';
+import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_activity.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_daily_meal.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_result_widget.dart';
 import 'package:fitness_tracker_app/features/nav/diary/presentation/widgets/item_water_widget.dart';
@@ -168,7 +168,7 @@ class DiaryPage extends GetView<DiaryController> {
 
   _buildExercise() {
     return GetBuilder<DiaryController>(
-        id: "fetchRelationshipFood",
+        id: "fetchRelationshipActivity",
         builder: (logic) {
           return Padding(
             padding:
@@ -182,16 +182,16 @@ class DiaryPage extends GetView<DiaryController> {
                   color: AppColors.black,
                 ),
                 const SizedBox(height: 10.0),
-                ItemDailyMeal(
+                ItemDailyActivity(
                   color: AppColors.error,
                   title: 'practise',
                   kCal: controller.user!
                       .getDailyMeal(dailyMeals: DailyMeals.breakfast),
-                  consumeKcal: 0,
+                  consumeKcal: controller.getCaloriesConsumeActivity(),
                   onTap: () {
-                    Get.toNamed(Routes.activity);
+                    controller.gotoPageActivity();
                   },
-                  relationshipFoods: const [],
+                  relationshipActivity: controller.listActivityRelationship,
                 ),
               ],
             ),

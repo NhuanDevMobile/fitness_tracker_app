@@ -5,7 +5,7 @@ import 'package:fitness_tracker_app/features/nav_diary/activity/models/activity_
 class FirestoreActivity {
   static final _fireStoreFoodCollection =
       FirebaseFirestore.instance.collection('exercises');
-  static Future<Result<List<ActivityModel>>> getFoods() async {
+  static Future<Result<List<ActivityModel>>> getActivities() async {
     try {
       QuerySnapshot querySnapshot = await _fireStoreFoodCollection.get();
 
