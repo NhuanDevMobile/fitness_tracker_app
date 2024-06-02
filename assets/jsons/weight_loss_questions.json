@@ -1,0 +1,53 @@
+ [
+  {
+    "id": 1,
+    "question": "Hãy tự đánh giá mức độ vận động hàng ngày của bạn:",
+    "options": ["Rất ít vận động (Hệ số 1.2)", "Vận động nhẹ nhàng (Hệ số 1.375)","Vận động linh hoạt (Hệ số 1.55)","Vận động tích cực (Hệ số 1.725)","Vận động nhiều (Hệ số 1.9)"],
+    "required": true
+  },
+      {
+        "id": 2,
+        "question": "Bạn gặp tình trạng thừa cân từ bao lâu rồi?",
+        "options": ["Dưới 6 tháng", "6 tháng đến dưới 1 năm","Từ 1 năm đến 3 năm","Nhiều hơn 3 năm"],
+        "required": true
+      },
+      {
+        "id": 3,
+        "question": "Bạn muốn giảm bao nhiêu kg trong vòng một tháng?",
+        "options": ["Dưới 2kg", "Từ 2kg đến 5kg", "Trên 5kg", "Không biết"],
+        "required": true
+      },
+      {
+        "id": 4,
+        "question": "Bạn có thể dành bao nhiêu thời gian mỗi ngày để tập luyện?",
+        "options": ["Dưới 30 phút", "Từ 30 phút đến 1 giờ", "Trên 1 giờ"],
+        "required": true
+      },
+      {
+        "id": 5,
+        "question": "Bạn có thể thực hiện các thay đổi về chế độ ăn uống của mình không?",
+        "options": ["Có", "Không"]
+      },
+      {
+        "id": 6,
+        "question": "Bạn đã từng thực hiện bất kỳ lịch trình giảm cân nào trước đây chưa?",
+        "options": ["Có", "Không"]
+      }, {
+        "id": 7,
+        "question": "Các bửa ăn của bạn thường tới từ đâu?",
+        "options": ["Tự nấu ăn tại nhà", "Người khác nấu ăn giúp","Mua đồ ăn bên ngoài"]
+      }
+      , {
+        "id": 8,
+        "question": "Bạn thường ăn bao nhiêu bữa mỗi ngày?",
+        "options": ["1-2 bữa", "3 bữa","4 bữa","Nhiều hơn 4 bữa"]
+      },
+      {
+        "id": 9,
+        "question": "Bạn có thường xuyên ăn vặt hàng ngày không?",
+        "options": ["Rất hiếm khi", "Thỉnh thoảng","Thường xuyên"]
+      }
+     
+    ]
+  
+  
